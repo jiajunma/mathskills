@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="https://unpkg.com/@hpcc-js/wasm@2.16.1/dist/graphviz.umd.js"></script>
 <script src="https://unpkg.com/d3-graphviz@5.4.0/build/d3-graphviz.min.js"></script>
@@ -43,6 +44,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 .filter-chip { padding: 2px 8px; border-radius: 10px; font-size: 10px; cursor: pointer; border: 1px solid; user-select: none; }
 .filter-chip.active { opacity: 1; }
 .filter-chip.inactive { opacity: 0.4; }
+
+/* Sidebar tabs */
+#sidebar-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.sidebar-tab { flex: 1; padding: 8px 12px; text-align: center; font-size: 12px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; border-top: none; border-left: none; border-right: none; }
+.sidebar-tab.active { color: #4A90D9; border-bottom-color: #4A90D9; }
+.sidebar-tab:hover { background: #f8f8f8; }
+#symbols-list { flex: 1; overflow-y: auto; padding: 4px 0; display: none; }
+.symbol-item { padding: 6px 12px; font-size: 12px; cursor: pointer; border-left: 3px solid transparent; }
+.symbol-item:hover { background: #f0f6ff; }
+.symbol-item .sym { font-weight: 600; font-family: "KaTeX_Math", serif; }
+.symbol-item .sym-desc { color: var(--text-muted); font-size: 11px; display: block; margin-top: 2px; }
+.symbol-item .sym-def { color: #4A90D9; font-size: 10px; }
+
+/* OCR toggle */
+.ocr-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; margin-left: 8px; cursor: pointer; color: #4A90D9; }
+.ocr-toggle:hover { text-decoration: underline; }
+
+/* Defined symbols in detail */
+.defined-symbols { display: flex; flex-wrap: wrap; gap: 6px; }
+.defined-symbol-tag { background: #e8f4ff; border: 1px solid #b8d8f8; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-family: "KaTeX_Math", serif; }
 
 /* Object list */
 #object-list { flex: 1; overflow-y: auto; padding: 4px 0; }
@@ -92,6 +113,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 .type-example { background-color: #FFFFB3; border-color: #D9D94A; }
 .type-conjecture { background-color: #FFE0B3; border-color: #D9A64A; }
 
+/* PDF Viewer */
+#pdf-section { border-top: 1px solid var(--border); padding: 12px 16px; }
+#pdf-section .field-label { font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+#pdf-section .pdf-controls { display: flex; gap: 6px; align-items: center; }
+#pdf-section .pdf-controls button { padding: 2px 8px; border: 1px solid var(--border); border-radius: 3px; background: #fff; font-size: 11px; cursor: pointer; }
+#pdf-section .pdf-controls button:hover { background: #f0f0f0; }
+#pdf-section .pdf-page-info { font-size: 11px; color: var(--text-muted); }
+#pdf-canvas-container { background: #e8e8e8; border-radius: 4px; overflow: auto; max-height: 500px; text-align: center; }
+#pdf-canvas { max-width: 100%; }
+#pdf-unavailable { padding: 20px; text-align: center; color: var(--text-muted); font-size: 12px; }
+
 /* Responsive */
 @media (max-width: 900px) {
   :root { --sidebar-w: 220px; --detail-w: 280px; }
@@ -106,11 +138,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
       <h1 id="doc-title"></h1>
       <div class="meta" id="doc-meta"></div>
     </div>
+    <div id="sidebar-tabs">
+      <button class="sidebar-tab active" onclick="switchTab('objects')">Objects</button>
+      <button class="sidebar-tab" onclick="switchTab('symbols')">Symbols</button>
+    </div>
     <div id="search-box">
       <input type="text" id="search-input" placeholder="Search objects...">
     </div>
     <div id="filter-bar"></div>
     <div id="object-list"></div>
+    <div id="symbols-list"></div>
   </nav>
 
   <!-- Graph -->
@@ -130,12 +167,102 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
       <button id="detail-close" onclick="closeDetail()">&times;</button>
     </div>
     <div id="detail-content"></div>
+    <div id="pdf-section" style="display:none;">
+      <div class="field-label">
+        <span>PDF Preview</span>
+        <div class="pdf-controls">
+          <button onclick="pdfPrevPage()">&larr;</button>
+          <span class="pdf-page-info" id="pdf-page-info">-</span>
+          <button onclick="pdfNextPage()">&rarr;</button>
+        </div>
+      </div>
+      <div id="pdf-canvas-container">
+        <canvas id="pdf-canvas"></canvas>
+      </div>
+      <div id="pdf-unavailable" style="display:none;">PDF file not found. Place the PDF in the same directory as this HTML file.</div>
+    </div>
   </div>
 </div>
 
 <script>
 // Data injected by generate_viz.py
 const DATA = /*DATA_PLACEHOLDER*/null;
+const PDF_PATH = /*PDF_PATH_PLACEHOLDER*/null;
+
+// PDF.js viewer state
+let pdfDoc = null;
+let pdfCurrentPage = 1;
+let pdfLoading = false;
+
+// Initialize PDF.js
+if (PDF_PATH && typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  pdfjsLib.getDocument(PDF_PATH).promise.then(doc => {
+    pdfDoc = doc;
+  }).catch(err => {
+    console.warn('PDF load failed:', err.message);
+  });
+}
+
+function renderPdfPage(pageNum) {
+  if (!pdfDoc || pdfLoading) return;
+  pageNum = Math.max(1, Math.min(pageNum, pdfDoc.numPages));
+  pdfCurrentPage = pageNum;
+  pdfLoading = true;
+
+  document.getElementById('pdf-page-info').textContent = `${pageNum} / ${pdfDoc.numPages}`;
+
+  pdfDoc.getPage(pageNum).then(page => {
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    const viewport = page.getViewport({ scale: 1.2 });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    page.render({ canvasContext: ctx, viewport: viewport }).promise.then(() => {
+      pdfLoading = false;
+    });
+  });
+}
+
+window.pdfPrevPage = function() { renderPdfPage(pdfCurrentPage - 1); };
+window.pdfNextPage = function() { renderPdfPage(pdfCurrentPage + 1); };
+
+function showPdfForObject(obj) {
+  const section = document.getElementById('pdf-section');
+  if (!pdfDoc) {
+    if (PDF_PATH) {
+      section.style.display = 'block';
+      document.getElementById('pdf-canvas-container').style.display = 'none';
+      document.getElementById('pdf-unavailable').style.display = 'block';
+    } else {
+      section.style.display = 'none';
+    }
+    return;
+  }
+
+  section.style.display = 'block';
+  document.getElementById('pdf-canvas-container').style.display = 'block';
+  document.getElementById('pdf-unavailable').style.display = 'none';
+
+  const page = obj.pdf_page || 1;
+  renderPdfPage(page);
+}
+
+// Tab switching
+window.switchTab = function(tab) {
+  document.querySelectorAll('.sidebar-tab').forEach(t => t.classList.remove('active'));
+  if (tab === 'objects') {
+    document.querySelector('.sidebar-tab:first-child').classList.add('active');
+    document.getElementById('object-list').style.display = 'block';
+    document.getElementById('symbols-list').style.display = 'none';
+    document.getElementById('filter-bar').style.display = 'flex';
+  } else {
+    document.querySelector('.sidebar-tab:last-child').classList.add('active');
+    document.getElementById('object-list').style.display = 'none';
+    document.getElementById('symbols-list').style.display = 'block';
+    document.getElementById('filter-bar').style.display = 'none';
+  }
+};
 
 if (!DATA) {
   document.getElementById('doc-title').textContent = 'No data loaded';
@@ -144,7 +271,7 @@ if (!DATA) {
 }
 
 function initApp(data) {
-  const { metadata, objects, dependencies, dot_graph, sections } = data;
+  const { metadata, objects, dependencies, dot_graph, sections, notation_table } = data;
 
   // Build indices
   const objMap = {};
@@ -169,10 +296,75 @@ function initApp(data) {
   let showProofs = false;
   let selectedId = null;
 
+  // Build symbol→definition index for detail panel
+  const symbolsByDef = {};  // def_id -> [notation entries]
+  if (notation_table) {
+    notation_table.forEach(entry => {
+      if (!symbolsByDef[entry.defined_in]) symbolsByDef[entry.defined_in] = [];
+      symbolsByDef[entry.defined_in].push(entry);
+    });
+  }
+
   // Header
   document.getElementById('doc-title').textContent = metadata.title || metadata.source_file;
+  const symbolCount = notation_table ? notation_table.length : 0;
   document.getElementById('doc-meta').textContent =
-    `${objects.length} objects | ${dependencies.length} dependencies | ${metadata.source_file}`;
+    `${objects.length} objects | ${symbolCount} symbols | ${dependencies.length} deps | ${metadata.source_file}`;
+
+  // Render symbols list
+  function renderSymbols(filter = '') {
+    const list = document.getElementById('symbols-list');
+    list.innerHTML = '';
+    if (!notation_table || notation_table.length === 0) {
+      list.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:12px;">No symbols extracted.</div>';
+      return;
+    }
+    // Group by section (via defined_in object's section)
+    const groups = {};
+    notation_table.forEach(entry => {
+      const obj = objMap[entry.defined_in];
+      const sec = obj ? (obj.section || 'Ungrouped') : 'Ungrouped';
+      if (filter) {
+        const searchStr = `${entry.symbol} ${entry.description}`.toLowerCase();
+        if (!searchStr.includes(filter.toLowerCase())) return;
+      }
+      if (!groups[sec]) groups[sec] = [];
+      groups[sec].push(entry);
+    });
+
+    Object.keys(groups).forEach(sec => {
+      const group = document.createElement('div');
+      group.className = 'obj-group';
+      const header = document.createElement('div');
+      header.className = 'obj-group-header';
+      header.innerHTML = `<span>${sec}</span><span class="count">${groups[sec].length}</span>`;
+      let collapsed = false;
+      const items = document.createElement('div');
+      header.onclick = () => { collapsed = !collapsed; items.style.display = collapsed ? 'none' : 'block'; };
+
+      groups[sec].forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'symbol-item';
+        item.innerHTML = `<span class="sym">${escapeHtml(entry.symbol)}</span>` +
+          `<span class="sym-desc">${escapeHtml(entry.description)}</span>` +
+          `<span class="sym-def">${escapeHtml(entry.defined_in)}</span>`;
+        item.onclick = () => selectObject(entry.defined_in);
+        items.appendChild(item);
+      });
+
+      group.appendChild(header);
+      group.appendChild(items);
+      list.appendChild(group);
+    });
+
+    // Render KaTeX in symbol items
+    list.querySelectorAll('.sym').forEach(el => {
+      renderMathInElement(el, {
+        delimiters: [{left: '$', right: '$', display: false}],
+        throwOnError: false,
+      });
+    });
+  }
 
   // Filters
   const filterBar = document.getElementById('filter-bar');
@@ -215,7 +407,7 @@ function initApp(data) {
         const searchStr = `${o.type} ${o.number || ''} ${o.title || ''} ${o.content_plain || ''}`.toLowerCase();
         if (!searchStr.includes(filter.toLowerCase())) return;
       }
-      const sec = o.section || 'Ungrouped';
+      const sec = o.source === 'external' ? 'External References' : (o.section || 'Ungrouped');
       if (!groups[sec]) groups[sec] = [];
       groups[sec].push(o);
     });
@@ -239,7 +431,8 @@ function initApp(data) {
         const item = document.createElement('div');
         item.className = 'obj-item' + (o.id === selectedId ? ' selected' : '');
         const typeLabel = capitalize(o.type);
-        item.innerHTML = `<span class="num">${typeLabel}${o.number ? ' ' + o.number : ''}</span>` +
+        const extTag = o.source === 'external' ? ' <span style="color:#808080;font-size:10px;">(ext)</span>' : '';
+        item.innerHTML = `<span class="num">${typeLabel}${o.number ? ' ' + o.number : ''}${extTag}</span>` +
           (o.title ? `<span class="title">${o.title}</span>` : '');
         item.onclick = () => selectObject(o.id);
         items.appendChild(item);
@@ -271,11 +464,34 @@ function initApp(data) {
     }
 
     html += `<div class="field"><div class="field-label">Section</div><div class="field-value">${escapeHtml(obj.section || 'N/A')}</div></div>`;
-    html += `<div class="field"><div class="field-label">Source Line</div><div class="field-value">${obj.source_line}</div></div>`;
 
-    // Content
-    const displayContent = obj.content_plain || obj.content_latex || '';
-    html += `<div class="field"><div class="field-label">Content</div><div class="math-content">${escapeHtml(displayContent)}</div></div>`;
+    if (obj.source === 'external') {
+      html += `<div class="field"><div class="field-label">Source</div><div class="field-value" style="color:#808080;">External reference</div></div>`;
+      if (obj.cite_key) {
+        html += `<div class="field"><div class="field-label">Citation</div><div class="field-value">\\cite[${escapeHtml(obj.cite_detail || '')}]{${escapeHtml(obj.cite_key)}}</div></div>`;
+      }
+    } else {
+      html += `<div class="field"><div class="field-label">Source Line</div><div class="field-value">${obj.source_line}</div></div>`;
+    }
+
+    // Defined symbols (for definition/notation objects)
+    const definedSymbols = symbolsByDef[obj.id] || [];
+    if (definedSymbols.length > 0) {
+      html += `<div class="field"><div class="field-label">Defined Symbols</div><div class="defined-symbols">`;
+      definedSymbols.forEach(s => {
+        html += `<span class="defined-symbol-tag">${escapeHtml(s.symbol)}</span>`;
+      });
+      html += `</div></div>`;
+    }
+
+    // Content with OCR toggle
+    const hasCorrection = obj.content_latex_corrected && obj.content_latex_corrected !== obj.content_latex;
+    const displayContent = hasCorrection ? obj.content_latex_corrected : (obj.content_plain || obj.content_latex || '');
+    const contentId = 'content-' + obj.id.replace(/[^a-zA-Z0-9]/g, '_');
+    const ocrToggle = hasCorrection
+      ? `<span class="ocr-toggle" onclick="toggleOcr('${contentId}', this)" data-showing="corrected">[show original OCR]</span>`
+      : '';
+    html += `<div class="field"><div class="field-label">Content${ocrToggle}</div><div class="math-content" id="${contentId}" data-corrected="${escapeHtml(obj.content_latex_corrected || '')}" data-original="${escapeHtml(obj.content_latex || '')}">${escapeHtml(displayContent)}</div></div>`;
 
     // Dependencies (what this depends on)
     const deps = (depsFrom[id] || []).filter(d => d.to !== id);
@@ -314,7 +530,23 @@ function initApp(data) {
       html += `<div class="field"><div class="field-label">Proves</div><ul class="dep-list"><li onclick="selectObject('${obj.proves}')">${capitalize(t.type)}${t.number ? ' ' + t.number : ''}</li></ul></div>`;
     }
 
+    // PDF page link
+    if (obj.pdf_page) {
+      html += `<div class="field"><div class="field-label">PDF Page</div><div class="field-value">${obj.pdf_page}</div></div>`;
+    }
+
     content.innerHTML = html;
+
+    // Show PDF preview
+    showPdfForObject(obj);
+
+    // Render KaTeX in defined symbol tags
+    content.querySelectorAll('.defined-symbol-tag').forEach(el => {
+      renderMathInElement(el, {
+        delimiters: [{left: '$', right: '$', display: false}],
+        throwOnError: false,
+      });
+    });
 
     // Render KaTeX in math-content
     content.querySelectorAll('.math-content').forEach(el => {
@@ -344,9 +576,36 @@ function initApp(data) {
   }
   window.closeDetail = closeDetail;
 
+  // OCR toggle function
+  window.toggleOcr = function(contentId, toggleEl) {
+    const el = document.getElementById(contentId);
+    if (!el) return;
+    const showing = toggleEl.getAttribute('data-showing');
+    if (showing === 'corrected') {
+      el.textContent = el.getAttribute('data-original');
+      toggleEl.textContent = '[show corrected]';
+      toggleEl.setAttribute('data-showing', 'original');
+    } else {
+      el.textContent = el.getAttribute('data-corrected');
+      toggleEl.textContent = '[show original OCR]';
+      toggleEl.setAttribute('data-showing', 'corrected');
+    }
+    // Re-render math
+    renderMathInElement(el, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true},
+      ],
+      throwOnError: false,
+    });
+  };
+
   // Search
   document.getElementById('search-input').addEventListener('input', (e) => {
     renderList(e.target.value);
+    renderSymbols(e.target.value);
   });
 
   // Graph rendering
@@ -423,7 +682,8 @@ function initApp(data) {
       const nodeId = o.id.replace(/:/g,'_').replace(/\./g,'_');
       let label = capitalize(o.type);
       if (o.number) label += ' ' + o.number;
-      dot += `  "${nodeId}" [label="${label}", shape=${c.shape}, style=filled, fillcolor="${c.fill}", color="${c.stroke}", tooltip="${o.id}"];\n`;
+      const nodeStyle = o.source === 'external' ? '"dashed,filled"' : 'filled';
+      dot += `  "${nodeId}" [label="${label}", shape=${c.shape}, style=${nodeStyle}, fillcolor="${c.fill}", color="${c.stroke}", tooltip="${o.id}"];\n`;
     });
 
     dot += '\n';
@@ -434,6 +694,8 @@ function initApp(data) {
       proves: {color:'#4AD94A',style:'dashed'},
       implicit: {color:'#D9944A',style:'dotted'},
       cites: {color:'#808080',style:'dotted'},
+      uses_definition: {color:'#9B59B6',style:'dashed'},
+      cites_result: {color:'#808080',style:'dashed'},
     };
 
     deps.forEach(d => {
@@ -502,6 +764,7 @@ function initApp(data) {
 
   // Initial render
   renderList();
+  renderSymbols();
   renderGraph();
 }
 

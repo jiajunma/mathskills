@@ -46,9 +46,17 @@ def main():
     # Get title for page
     title = data.get("metadata", {}).get("title", data.get("metadata", {}).get("source_file", "Analysis"))
 
+    # Determine PDF path (relative to output HTML)
+    pdf_file = data.get("metadata", {}).get("pdf_file")
+    if pdf_file:
+        pdf_path_json = json.dumps(pdf_file, ensure_ascii=False)
+    else:
+        pdf_path_json = 'null'
+
     # Inject data
     data_json = json.dumps(data, ensure_ascii=False)
     html = template.replace('/*DATA_PLACEHOLDER*/null', data_json)
+    html = html.replace('/*PDF_PATH_PLACEHOLDER*/null', pdf_path_json)
     html = html.replace('{{TITLE}}', title.replace('"', '&quot;'))
 
     # Determine output path

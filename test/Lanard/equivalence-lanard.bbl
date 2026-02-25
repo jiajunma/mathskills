@@ -1,0 +1,53 @@
+\begin{thebibliography}{{Lan}18b}
+
+\bibitem[BT72]{bt1}
+F.~Bruhat and J.~Tits, \textsl{ Groupes r\'{e}ductifs sur un corps local},
+\newblock Inst. Hautes \'{E}tudes Sci. Publ. Math. (41), 5--251 (1972).
+
+\bibitem[BT84]{BT}
+F.~Bruhat and J.~Tits, \textsl{ Groupes r\'eductifs sur un corps local. {II}.
+  {S}ch\'emas en groupes. {E}xistence d'une donn\'ee radicielle valu\'ee},
+\newblock Inst. Hautes \'Etudes Sci. Publ. Math. (60), 197--376 (1984).
+
+\bibitem[Dat18]{dat_equivalences_2014}
+J.-F. Dat, \textsl{ Equivalences of tame blocks for p-adic linear groups},
+\newblock Math. Ann. \textbf{ 371}(1-2), 565--613 (2018).
+
+\bibitem[Lan18a]{lanard}
+T.~Lanard, \textsl{ Sur les $\ell$-blocs de niveau zéro des groupes
+  $p$-adiques},
+\newblock Compositio Mathematica \textbf{ 154}(7), 1473–1507 (2018).
+
+\bibitem[{Lan}18b]{lanard2}
+T.~{Lanard}, \textsl{ {Sur les $\ell$-blocs de niveau zéro des groupes
+  $p$-adiques II}},
+\newblock arXiv e-prints , arXiv:1806.09543 (June 2018), {1806.09543}.
+
+\bibitem[MS10]{meyer_resolutions_2010}
+R.~Meyer and M.~Solleveld, \textsl{ Resolutions for representations of
+  reductive {$p$}-adic groups via their buildings},
+\newblock J. Reine Angew. Math. \textbf{ 647}, 115--150 (2010).
+
+\bibitem[SS97]{SchneiderStuhler}
+P.~Schneider and U.~Stuhler, \textsl{ Representation theory and sheaves on the
+  {B}ruhat-{T}its building},
+\newblock Inst. Hautes \'{E}tudes Sci. Publ. Math. (85), 97--191 (1997).
+
+\bibitem[Vig96]{vignerasmod}
+M.-F. Vign\'eras,
+\newblock \textsl{ Repr\'esentations {$l$}-modulaires d'un groupe r\'eductif
+  {$p$}-adique avec {$l\ne p$}}, volume 137 of \textsl{ Progress in
+  Mathematics},
+\newblock Birkh\"auser Boston, Inc., Boston, MA, 1996.
+
+\bibitem[Vig97]{vignsheves}
+M.-F. Vign\'{e}ras, \textsl{ Cohomology of sheaves on the building and
+  {$R$}-representations},
+\newblock Invent. Math. \textbf{ 127}(2), 349--373 (1997).
+
+\bibitem[Wan17]{Wanga}
+H.~Wang, \textsl{ L'espace sym\'etrique de {D}rinfeld et correspondance de
+  {L}anglands locale {II}},
+\newblock Math. Ann. \textbf{ 369}(3-4), 1081--1130 (2017).
+
+\end{thebibliography}

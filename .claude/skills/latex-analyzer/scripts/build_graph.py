@@ -35,7 +35,9 @@ RELATION_STYLES = {
     "uses":       {"color": "#4A90D9", "style": "solid"},
     "proves":     {"color": "#4AD94A", "style": "dashed"},
     "implicit":   {"color": "#D9944A", "style": "dotted"},
-    "cites":      {"color": "#808080", "style": "dotted"},
+    "cites":           {"color": "#808080", "style": "dotted"},
+    "uses_definition": {"color": "#9B59B6", "style": "dashed"},
+    "cites_result":    {"color": "#808080", "style": "dashed"},
 }
 
 
@@ -115,11 +117,12 @@ def generate_dot(objects, dependencies, include_proofs=False):
             label += f"\\n{title}"
 
         node_id = obj["id"].replace(":", "_").replace(".", "_")
+        node_style = '"dashed,filled"' if obj.get("source") == "external" else "filled"
         lines.append(
             f'  "{node_id}" ['
             f'label="{label}", '
             f'shape={tc["shape"]}, '
-            f'style=filled, '
+            f'style={node_style}, '
             f'fillcolor="{tc["fill"]}", '
             f'color="{tc["stroke"]}", '
             f'tooltip="{obj["id"]}"'

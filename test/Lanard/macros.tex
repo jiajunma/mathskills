@@ -1,0 +1,512 @@
+%% Resumé
+\makeatletter
+\newenvironment{abstracts}{%
+  \ifx\maketitle\relax
+    \ClassWarning{\@classname}{Abstract should precede
+      \protect\maketitle\space in AMS document classes; reported}%
+  \fi
+  \global\setbox\abstractbox=\vtop \bgroup
+    \normalfont\Small
+    \list{}{\labelwidth\z@
+      \leftmargin3pc \rightmargin\leftmargin
+      \listparindent\normalparindent \itemindent\z@
+      \parsep\z@ \@plus\p@
+      \let\fullwidthdisplay\relax
+      \itemsep\medskipamount
+    }%
+}{%
+  \endlist\egroup
+  \ifx\@setabstract\relax \@setabstracta \fi
+}
+
+\newcommand{\abstractin}[1]{%
+  \otherlanguage{#1}%
+  \item[\hskip\labelsep\scshape\abstractname.]%
+}
+\makeatother
+
+
+%% Gestion des théorèmes & Cie.
+
+\swapnumbers % Le numéro des théorèmes s'affiche avant le mot "Théorème".
+\theoremstyle{definition} % Pour tout ce qui ressemble à des définitions : définitions, notations...
+\newtheorem{Def}{Definition}[section] % Définitions.
+\theoremstyle{plain} % Pour tous ce qui ressemble à des théorèmes.
+\newtheorem{Pro}[Def]{Proposition} % Propositions.
+\newtheorem{Lem}[Def]{Lemma} % Lemmes.
+\newtheorem{The}[Def]{Theorem} % Théorèmes.
+\newtheorem{Cor}[Def]{Corollary} % Corollaires.
+\newtheorem{Con}[Def]{Conjecture} % Corollaires.
+%
+%\newtheorem{Defa}[Def]{Definition} % Propositions.
+%\newtheorem{Proa}[Def]{Proposition} % Propositions.
+%\newtheorem{Lema}[Def]{Lemma} % Lemmes.
+%\newtheorem{Thea}[Def]{Theorem} % Théorèmes.
+%\newtheorem{Cora}[Def]{Corollary} % Corollaires.
+%\newtheorem{Cona}[Def]{Conjecture} % Corollaires.
+
+%
+%
+%\newtheorem*{The*}{Théorème}
+%\newtheorem*{Def*}{Définition}
+%\newtheorem*{Pro*}{Proposition}
+\newtheorem*{The*}{Theorem}
+\newtheorem*{Def*}{Definition} % Propositions.
+\newtheorem*{Pro*}{Proposition}
+
+\theoremstyle{remark} % Pour tout ce qui ressemble à des remarques.
+\newtheorem{Exe}[Def]{Example} % Exemples.
+\newtheorem{Rem}[Def]{Remark} % Remarques.
+
+%
+%
+%\newtheorem*{Rem*}{Remarque}
+\newtheorem*{Rem*}{Remark}
+
+%
+%
+%%%Changement numérotation annexe
+%\newtheorem{DefA}{Définition}[section] % Définitions.
+%\theoremstyle{plain} % Pour tous ce qui ressemble à des théorèmes.
+%\newtheorem{ProA}[DefA]{Proposition} % Propositions.
+%\newtheorem{LemA}[DefA]{Lemme} % Lemmes.
+%\newtheorem{TheA}[DefA]{Théorème} % Théorèmes.
+%\newtheorem{CorA}[DefA]{Corollaire} % Corollaires.
+%\newtheorem{ConA}[DefA]{Conjecture} % Corollaires.
+%
+
+
+%%Chapitre sans saut de page
+\makeatletter
+\newcommand\chapterpage{\clearpage
+                    \thispagestyle{plain}%
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\makeatother
+
+
+%% Groupes algébriques et duaux
+\makeatletter
+\def\parenthese#1{\@ifnextchar_{(#1)}{#1}}
+\makeatother
+
+\newcommand{\gp}[1]{#1}
+\NewDocumentCommand{\algPoints}{m o}
+{
+	\IfNoValueTF {#2}
+		{#1}
+    	{\parenthese{#1(#2)}} 	
+}
+\NewDocumentCommand{\gpalg}{ s m o}{
+	\IfBooleanTF#1
+    	{\algPoints{\widehat{\textbf{#2}}}[#3]}
+    	{\algPoints{\textbf{#2}}[#3]}
+}
+\NewDocumentCommand{\gpfini}{ s m}{
+	\IfBooleanTF#1
+    	{\textsf{#2}^{*}}
+    	{\textsf{#2}}
+}
+\NewDocumentCommand{\gpfinialg}{s m o}{
+	\IfBooleanTF#1
+    	{\algPoints{\textbf{\textsf{#2}}^{*}}[#3]}
+    	{\algPoints{\textbf{\textsf{#2}}}[#3]}
+}
+\NewDocumentCommand{\Ldual}{m o}{\algPoints{ {}^{L}\gpalg{#1}}[#2]}
+\NewDocumentCommand{\quotred}{s m m}{
+	\parenthese{
+		\IfBooleanTF#1
+			{\overline{\gpfini{#2}}_{#3}^{*} }
+			{\overline{\gpfini{#2}}_{#3} }
+	}
+}
+\NewDocumentCommand{\quotredalg}{s m m o}{
+	\parenthese{ 
+		\IfBooleanTF#1
+			{\algPoints{\overline{\gpfinialg{#2}}_{#3}^{*}}[#4]}
+			{\algPoints{\overline{\gpfinialg{#2}}_{#3}}[#4]}
+	}
+}
+\newcommand{\G}{\gp{G}}
+
+
+\NewDocumentCommand{\cent}{s m m}{ 
+	\IfBooleanTF#1
+		{C_{#3}(#2)^{\circ}}
+		{C_{#3}(#2)}
+}
+
+
+
+\DeclareDocumentCommand{\ss}{s m}{
+	\IfBooleanTF#1
+		{#2_{ss,\Lambda}}
+		{#2_{ss}}
+}
+
+
+%% Groupes classiques
+\newcommand{\ZnZ}[1]{\mathbb{Z}/#1\mathbb{Z}} %Z/nZ
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Ortho}{O}
+\DeclareMathOperator{\Un}{U}
+\NewDocumentCommand{\gl}{m o}{\algPoints{\GL_{#1}}[#2]}  
+\DeclareDocumentCommand{\sl}{m o}{\algPoints{\SL_{#1}}[#2]}  
+\NewDocumentCommand{\pgl}{m o}{\algPoints{\PGL_{#1}}[#2]}  
+\DeclareDocumentCommand{\so}{s m o}{
+	\IfBooleanTF#1
+		{\algPoints{\SO_{#2}^{*}}[#3]}
+		{\algPoints{\SO_{#2}}[#3]}
+}
+\DeclareDocumentCommand{\sp}{m o}{\algPoints{\Sp_{#1}}[#2]} 
+\NewDocumentCommand{\on}{m o}{\algPoints{\Ortho_{#1}}[#2]} 
+\NewDocumentCommand{\un}{m o o}{\algPoints{\Un_{#1}}[#2/#3]} 
+
+
+
+
+%%% Groupes de Weyl
+
+\newcommand{\WfM}[1]{W_{#1}}
+\newcommand{\WaM}[1]{W_{#1}^a}
+\newcommand{\WeM}[1]{\tilde{W}_{#1}}
+
+\NewDocumentCommand{\Wf}{o}{
+	\IfNoValueTF {#1}
+	{W}
+	{W(\gpalg{#1})}
+}
+\NewDocumentCommand{\Wa}{o}{
+	\IfNoValueTF {#1}
+		{W^a}
+		{W^a(\gpalg{#1})}
+}
+\NewDocumentCommand{\We}{o}{
+	\IfNoValueTF {#1}
+		{\tilde{W}}
+		{\tilde{W}(\gpalg{#1})}
+}
+\NewDocumentCommand{\Wx}{m o}{
+	\IfNoValueTF {#2}
+		{W_{#1}}
+		{W_{#1}(\gpalg{#2})}
+}
+
+\NewDocumentCommand{\Wxd}{m o}{
+	\IfNoValueTF {#2}
+		{W_{#1}^{\dagger}}
+		{W_{#1}^{\dagger}(#2)}
+}
+\NewDocumentCommand{\WStf}{s}{
+	\IfBooleanTF#1
+		{W(\gpalg{S},\theta)}
+		{W^{\circ}(\gpalg{S},\theta)}
+}
+\NewDocumentCommand{\WStxcomplet}{m m m}{W^{\circ}_{#1}(#2,#3)}
+\NewDocumentCommand{\WStx}{m}{\WStxcomplet{#1}{\gpalg{S}}{\theta}}
+\NewDocumentCommand{\WStecomplet}{s m m}{
+	\IfBooleanTF#1
+		{\tilde{W}(#2,#3)}
+		{\tilde{W}^{\circ}(#2,#3)}
+}
+\NewDocumentCommand{\WSte}{s}{
+	\IfBooleanTF#1
+		{\WStecomplet*{\gpalg{S}}{\theta}}
+		{\WStecomplet{\gpalg{S}}{\theta}}
+}
+\newcommand{\WStacomplet}[2]{W^{a}(#1,#2)}
+\newcommand{\WSta}{\WStacomplet{\gpalg{S}}{\theta}}
+
+\NewDocumentCommand{\WsM}{s m m}{
+	\IfBooleanTF#1
+		{W_{#3,#2}}
+		{W^{\circ}_{#3,#2}}
+}
+
+\NewDocumentCommand{\WSteM}{s m}{
+	\IfBooleanTF#1
+		{\tilde{W}_{#2}(\gpalg{S},\theta)}
+		{\tilde{W}^{\circ}_{#2}(\gpalg{S},\theta)}
+}
+\newcommand{\WStaM}[1]{W^{a}_{#1}(\gpalg{S},\theta)}
+\NewDocumentCommand{\WStfM}{s m}{
+	\IfBooleanTF#1
+		{W_{#2}(\gpalg{S},\theta)}
+		{W^{\circ}_{#2}(\gpalg{S},\theta)}
+}
+\NewDocumentCommand{\Ws}{s m o}{
+	\IfBooleanTF#1
+	{
+		\IfNoValueTF {#3}
+			{W_{#2}}
+			{W_{#2}(#3)}
+	}
+	{
+		\IfNoValueTF {#3}
+			{W^{\circ}_{#2}}
+			{W^{\circ}_{#2}(#3)}
+	}
+}
+
+\NewDocumentCommand{\NStecomplet}{s m m}{
+	\IfBooleanTF#1
+		{N(#2,#3)}
+		{N^{\circ}(#2,#3)}
+}
+\NewDocumentCommand{\NSte}{s}{
+	\IfBooleanTF#1
+		{\NStecomplet*{\gpalg{S}}{\theta}}
+		{\NStecomplet{\gpalg{S}}{\theta}}
+}
+\newcommand{\NStacomplet}[2]{N^a(#1,#2)}
+\newcommand{\NSta}{\NStacomplet{\gpalg{S}}{\theta}}
+
+\newcommand{\Wap}{W'^a}
+%% Bruhat-Tits
+
+\DeclareMathOperator{\BT}{BT}
+\NewDocumentCommand{\bt}{o}{
+	\IfNoValueTF{#1}
+		{\BT}
+		{\BT(#1)}
+}
+\NewDocumentCommand{\bts}{o}{
+	\IfNoValueTF{#1}
+		{\BT_{0}}
+		{\BT_{0}(#1)}
+}
+\NewDocumentCommand{\bte}{o}{
+	\IfNoValueTF{#1}
+		{\BT^{e}}
+		{\BT^{e}(#1)}
+}
+\NewDocumentCommand{\btes}{o}{
+	\IfNoValueTF{#1}
+		{\BT^{e}_{0}}
+		{\BT^{e}_{0}(#1)}
+}
+\newcommand{\app}[2]{\mathcal{A}(\gpalg{#1},#2)}
+\newcommand{\appe}[2]{\mathcal{A}^e(\gpalg{#1},#2)}
+
+\newcommand{\fix}[2]{#1_{#2}}
+\newcommand{\para}[2]{#1_{#2}^{\circ}}
+\newcommand{\radpara}[2]{#1_{#2}^{+}}
+\newcommand{\paranr}[2]{#1_{#2}^{\circ,nr}}
+\newcommand{\radparanr}[2]{#1_{#2}^{+,nr}}
+
+
+%% Systèmes de conjugaisons
+
+\NewDocumentCommand{\systConj}{s m}{
+	\IfBooleanTF#1
+		{\fc{#2}=(\fc{#2}_{\sigma})_{\sigma \in \bt}}
+		{\fc{#2}}
+}
+\NewDocumentCommand{\systConjx}{m m}{\fc{#1}_{#2}}
+\NewDocumentCommand{\systEng}{m m}{\fc{S}_{(#1,#2)}}
+\NewDocumentCommand{\systEngx}{m m m}{\fc{S}_{(#1,#2),#3}}
+\newcommand{\compl}[1]{{}^{c}#1}
+\NewDocumentCommand{\systConjC}{m}{\fc{#1}=(\fc{#1}_{\sigma})_{\sigma \leq C}}
+\NewDocumentCommand{\systConjCpro}{m}{\fc{#1}=(\fc{#1}_{\sigma})_{\sigma \leq C}}
+
+\newcommand{\fc}[1]{\dofc#1}
+\newcommand{\dofc}[1]{\mathcal{#1}}
+
+\newcommand{\clotco}[1]{\overline{\fc{#1}}}
+\newcommand{\SStheta}{\systConj{S}_{(\gpalg{S},\theta)}}
+\newcommand{\SA}[1]{\systConj{S}_{#1}}
+
+\NewDocumentCommand{\transss}{s m m}{
+	\IfBooleanTF#1
+		{\varphi^{*}_{#2,#3}}
+		{\varphi_{#2,#3}}
+}
+
+\newcommand{\simJss}{\sim}
+\newcommand{\simJsst}{\sim'}
+
+
+%%Ensembles
+
+\newcommand{\ensSystConj}{\mathscr{S}_{\ld}}
+\newcommand{\ensSystConjc}{\ensSystConj^{c}}
+\newcommand{\Smin}{\ensSystConj^{\text{min}}}
+\newcommand{\ensSystConjcM}{\mathscr{S}_{M,\ld}^{c}}
+\newcommand{\pairesStmin}{\mathscr{P}_{\ld}^{\text{min}}}
+\newcommand{\triplets}{\mathscr{T}_{\ld}}
+\newcommand{\tripletsm}{\mathscr{T}^{m}_{\ld}}
+\newcommand{\tripletse}{\mathscr{T}^{e}_{\ld}}
+\newcommand{\Jss}{\mathscr{C}_{\ld}}
+\newcommand{\parties}[1]{\mathcal{P}(#1)}
+
+\NewDocumentCommand{\pairesSt}{s}{
+	\IfBooleanTF#1
+	{\mathscr{P}^{*}_{\ld}}
+	{\mathscr{P}_{\ld}}
+}
+\newcommand{\classer}[2]{[\gpalg{#1},#2]_r}
+\newcommand{\clr}{\classer{S}{\theta}}
+
+%% Paramètres de Langlands
+\NewDocumentCommand{\Lparametre}{m o}{\Phi(\Ldual{#1}[#2])}
+\NewDocumentCommand{\Lparam}{m m o}{\Phi(#1,\Ldual{#2}[#3])}
+\NewDocumentCommand{\Lparamm}{m m o}{\Phi_m(#1,\Ldual{#2}[#3])}
+\NewDocumentCommand{\Lp}{m o}{\Lparam{#1}{\G}[#2]}
+\NewDocumentCommand{\Lpm}{m o}{\Lparamm{#1}{\G}[#2]}
+\NewDocumentCommand{\LparamB}{m m o}{\widetilde{\Phi}(#1,\Ldual{#2}[#3])}
+\NewDocumentCommand{\LparamBm}{m m o}{\widetilde{\Phi}_m(#1,\Ldual{#2}[#3])}
+\NewDocumentCommand{\Lpb}{m o}{\LparamB{#1}{\G}[#2]}
+\NewDocumentCommand{\Lpbm}{m o}{\LparamBm{#1}{\G}[#2]}
+
+
+%%Nombres l-adics
+\newcommand{\ladic}[1]{\overline{\mathbb{#1}}_{\lprime}}
+\newcommand{\Ql}{\ladic{Q}}
+\newcommand{\Zl}{\ladic{Z}}
+\newcommand{\Fl}{\ladic{F}}
+
+
+%%Représentations
+\DeclareMathOperator{\Rep}{Rep}
+\DeclareMathOperator{\Irr}{Irr}
+\NewDocumentCommand{\rep}{ O{} O{} m }{\Rep_{#1}^{#2}(#3)}
+\NewDocumentCommand{\indPara}{m m o}{
+	\IfNoValueTF{#3}
+		{i_{#1}^{#2}}
+		{i_{#1}^{#2}(#3)}
+}
+\NewDocumentCommand{\resPara}{m m o}{
+	\IfNoValueTF{#3}
+		{r_{#1}^{#2}}
+		{r_{#1}^{#2}(#3)}
+}
+\NewDocumentCommand{\ip}{ o}{\indPara{\gp{P}}{\G}[#1]}
+\NewDocumentCommand{\rp}{ o}{\resPara{\gp{P}}{\G}[#1]}
+
+
+%%Operateurs
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Res}{Res}
+
+
+
+%% Mise en forme
+\newcommand{\sautintro}{\bigskip}
+
+\newcommand{\tosim}{\overset{\sim}{\to}}
+
+%%Notations
+\newcommand{\lprime}{\ell}
+\newcommand{\ld}{\Lambda}
+\newcommand{\ldb}{\overline{\ld}}
+\newcommand{\hecke}[2]{\mathcal{H}_{#2}(#1)}
+
+\newcommand{\iner}{I_{\kk}}
+\newcommand{\inerl}{\iner^{(\lprime)}}
+\newcommand{\Ild}{\iner^{\ld}}
+\newcommand{\weil}{W_{\kk}}
+\newcommand{\inersauv}{P_{\kk}}
+
+\newcommand{\dl}[2]{\mathcal{E}(#1,#2)}
+
+\newcommand{\sd}{s_{t}}
+\newcommand{\cd}{[\varphi_{t}]}
+
+\newcommand{\kk}{F}
+\newcommand{\knr}{F^{nr}}
+\newcommand{\kalg}{\overline{F}}
+\newcommand{\res}{k}
+\newcommand{\resalg}{\overline{k}}
+
+\newcommand{\fr}{\mathsf{F}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% NOuveaux %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Gphisigma}[2]{\gpalg{G}_{#1,#2}}
+\newcommand{\Gps}{\Gphisigma{\phi}{\sigma}}
+\newcommand{\Gpsc}{\Gps^{\circ}}
+\newcommand{\Gpsnr}{G_{\phi,\sigma}^{nr}}
+\newcommand{\Gpscnr}{G_{\phi,\sigma}^{\circ,nr}}
+\newcommand{\Mpsc}{\gpalg{M}_{\phi_M,\sigma_M}^{\circ}}
+\newcommand{\Mpscnr}{M_{\phi_M,\sigma_M}^{\circ,nr}}
+\newcommand{\pairesStw}[1]{\mathscr{P}^{#1}_{\ld}}
+\newcommand{\der}[1]{\mathcal{D}(#1)}
+\newcommand{\hps}{h_{\phi,\sigma}}
+
+
+
+
+%%%%%%%%%%%%%%%%%Nouveaux these$$$$$$$$$$$$$$$$$$$$
+\newcommand{\modG}[1]{\delta_{#1}}
+\DeclareMathOperator{\Ind}{Ind}
+\newcommand{\bern}[1]{\mathcal{B}(#1)}
+\DeclareMathOperator{\Coef}{Coef}
+\newcommand{\coef}{\Coef_{e}(G,R)}
+\newcommand{\coefG}[1]{\Coef_{e}(#1,R)}
+
+
+\newcommand{\TG}{\mathcal{T}(G)}
+
+\newcommand{\ordpol}[1]{P_{\gpfini{#1}}}
+\newcommand{\card}[1]{|#1|}
+\newcommand{\cycl}[1]{\Phi_{#1}}
+
+%\DeclareMathOperator{\Rr}{{}^{*}R}
+%\newcommand{\resdl}[3]{\Rr_{\gpfinialg{#1} \subseteq \gpfinialg{#2}}^{\gpfinialg{#3}}}
+%\newcommand{\rdl}{\resdl{L}{P}{G}}
+
+\newcommand{\resdl}[3]{{}^{*}\mathcal{R}_{\gpfinialg{#1} \subset \gpfinialg{#2}}^{\gpfinialg{#3}}}
+\newcommand{\rdl}{\resdl{L}{P}{G}}
+
+
+%\DeclareMathOperator{\Ri}{R}
+%\newcommand{\inddl}[3]{\Ri_{\gpfinialg{#1} \subseteq \gpfinialg{#2}}^{\gpfinialg{#3}}}
+%\newcommand{\idl}{\inddl{L}{P}{G}}
+
+\newcommand{\inddl}[3]{\mathcal{R}_{\gpfinialg{#1} \subset \gpfinialg{#2}}^{\gpfinialg{#3}}}
+\newcommand{\idl}{\inddl{L}{P}{G}}
+
+\DeclareMathOperator{\Abirr}{Ab_{\lprime}Irr}
+
+\newcommand{\dldcusp}[2]{\dl{\gpfini{G}}{(\gpfinialg{#1},#2)}}
+
+\DeclareMathOperator{\defect}{defect}
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\quotpara}[2]{\gpfini{P}_{#1,#2}}
+\newcommand{\quotunip}[2]{\gpfini{U}_{#1,#2}}
+
+\newcommand{\kgdc}[2]{k(#1,#2)}
+\newcommand{\kgd}{\kgdc{\gpfini{G}}{d}}
+
+
+\newcommand{\Fq}[1]{\mathbb{F}_{q^{#1}}}
+\newcommand{\Tc}{\gpfini{T}_c}
+\newcommand{\TGu}{\mathcal{T}^{1}(G)}
+
+\newcommand{\dll}[2]{\mathcal{E}_{\lprime}(#1,#2)}
+
+\newcommand{\rl}{r_{\lprime}}
+\newcommand{\zG}[1]{Z_{#1}(G)}
+\DeclareMathOperator{\ind}{ind}
+
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\im}{Im}
+
+\newcommand{\TGl}{\mathcal{T}_{\lprime}^{1}(G)}
+
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Id}{Id}

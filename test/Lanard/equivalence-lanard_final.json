@@ -1,0 +1,2114 @@
+{
+  "metadata": {
+    "source_file": "equivalence-lanard.tex",
+    "analyzed_at": "2026-02-25T05:38:56.818847+00:00",
+    "authors": [
+      "Thomas Lanard"
+    ],
+    "date": "\\today",
+    "pdf_file": "equivalence-lanard.pdf"
+  },
+  "objects": [
+    {
+      "id": "theorem:584",
+      "type": "theorem",
+      "number": null,
+      "title": "Exactness of C_*(BT, Γ) for e-coefficient systems",
+      "label": null,
+      "content_latex": "\\begin{The*}\nLet $\\Gamma$ be a $e$-coefficient system on $\\bt$. Then, the chain complex $C_{*}(\\bt,\\Gamma)$ is exact except in degree 0.\n\\end{The*}",
+      "section": "Introduction",
+      "source_line": 584,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "The chain complex C_*(BT, Γ) of an e-coefficient system on the Bruhat-Tits building is exact except in degree 0.",
+      "depth": 0
+    },
+    {
+      "id": "theorem:591",
+      "type": "theorem",
+      "number": null,
+      "title": "Equivalence Rep_e(G) ≅ Coef_e via Γ ↦ H_0(BT, Γ)",
+      "label": null,
+      "content_latex": "\\begin{The*}\nThe functor\n\\[\\begin{array}{ccc}\n \\rep[R][e]{G} & \\to & \\coef \\\\\n V & \\mapsto & \\Gamma(V) \\\\\n\\end{array}\\]\nadmits a quasi-inverse $\\Gamma \\mapsto H_0(\\bt,\\Gamma)$, so induces an equivalence of categories.\n\\end{The*}",
+      "section": "Introduction",
+      "source_line": 591,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "The functor V ↦ Γ(V) from Rep_e(G) to e-coefficient systems admits H_0(BT, -) as quasi-inverse, giving an equivalence of categories.",
+      "depth": 0
+    },
+    {
+      "id": "remark:600",
+      "type": "remark",
+      "number": null,
+      "title": "Context: Wang (GL_n case), Dat (block equivalences)",
+      "label": null,
+      "content_latex": "\\begin{Rem*}\n\\begin{enumerate}\n\\item In the case of $\\gl{n}(F)$, these results were proven by Wang in \\cite{Wanga}.\n\\item The equivalence on $\\gl{n}(F)$ was used by Dat in \\cite{dat_equivalences_2014} to construct an equivalence of categories between an arbitrary block of $\\gl{n}(F)$ and a unipotent block of another reductive $p$-adic group. Thus, we can hope that this theorem can be used to show an equivalence between blocks in a more general context.\n\\item This theorem applies in particular to all the categories constructed in \\cite{lanard} and \\cite{lanard2}.\n\\end{enumerate}\n\\end{Rem*}",
+      "section": "Introduction",
+      "source_line": 600,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga",
+        "dat_equivalences_2014",
+        "lanard",
+        "lanard2"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "defcoherent",
+      "type": "definition",
+      "number": "1.1",
+      "title": "Consistent system of idempotents",
+      "label": "defcoherent",
+      "content_latex": "\\begin{Def}\n\\label{defcoherent}\nA system of idempotents $e=(e_{x})_{x\\in \\bts}$ of $\\mathcal{H}_{R}(G)$ is consistent if the following properties are satisfied :\n\\begin{enumerate}\n\\item $e_{x}e_{y}=e_{y}e_{x}$ when $x$ and $y$ are adjacent.\n\\item $e_{x}e_{z}e_{y}=e_{x}e_{y}$ when $z \\in H(x,y)$ and $z$ is adjacent to $x$.\n\\item $e_{gx}=ge_{x}g^{-1}$ for all $x\\in \\bts$ and $g\\in G$.\n\\end{enumerate}\n\\end{Def}",
+      "section": "Coefficient systems and systems of idempotents",
+      "source_line": 660,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": 4,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "A system of idempotents (e_x) in the Hecke algebra is consistent if: (1) e_x e_y = e_y e_x for adjacent x,y; (2) e_x e_z e_y = e_x e_y for z ∈ H(x,y) adjacent to x; (3) G-equivariance.",
+      "depth": 0
+    },
+    {
+      "id": "definition:707",
+      "type": "definition",
+      "number": null,
+      "title": "Admissible path between polysimplices",
+      "label": null,
+      "content_latex": "\\begin{Def}\nLet $\\tau,\\sigma \\in \\bt$. A sequence of polysimplices $\\tau_{0},\\cdots,\\tau_{n} \\in \\bt$ is called an \\textit{admissible path} from $\\tau$ to $\\sigma$ if\n\\begin{enumerate}\n\\item $\\tau_{0}=\\tau$ and $\\tau_{n}=\\sigma$\n\\item $\\forall i \\in \\{0, \\cdots, n-1\\}$, $\\tau_{i+1} \\in H(\\tau_{i},\\sigma)$\n\\item $\\forall i \\in \\{0, \\cdots, n-1\\}$, $\\tau_{i} \\leq \\tau_{i+1}$ or $\\tau_{i+1} \\leq \\tau_{i}$\n\\end{enumerate}\n\\end{Def}",
+      "section": "Admissible paths",
+      "source_line": 707,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "A sequence τ_0,...,τ_n is an admissible path from τ to σ if each τ_{i+1} ∈ H(τ_i, σ) and consecutive terms are comparable.",
+      "depth": 0
+    },
+    {
+      "id": "remCheminTendu",
+      "type": "remark",
+      "number": "2.2",
+      "title": "Taut paths vs admissible paths",
+      "label": "remCheminTendu",
+      "content_latex": "\\begin{Rem}\n\\label{remCheminTendu}\nIn \\cite[(2.2.4)]{Wanga}, we have the definition of taut paths (\"chemins tendus\" in French). We can notice that if $(z_{0},\\cdots,z_{m})$ is a taut path, then $(z_{0}, [z_{0},z_{1}], z_{1} ,[z_{1},z_{2}],$  $\\cdots ,z_{m-1},[z_{m-1},z_{m}],z_{m})$ is an admissible path.\n\\end{Rem}",
+      "section": "Admissible paths",
+      "source_line": 716,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": 4,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemCheminsTendus",
+      "type": "lemma",
+      "number": "2.3",
+      "title": "Properties of admissible paths (truncation, concatenation, join)",
+      "label": "lemCheminsTendus",
+      "content_latex": "\\begin{Lem}\n\\label{lemCheminsTendus}\nLet $\\tau_{0},\\cdots,\\tau_{n} \\in \\bt$.\n\\begin{enumerate}\n\\item If $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path then, for all $k \\in \\{0,\\cdots,n\\}$, $\\tau_{k},\\cdots,\\tau_{n}$ is also an admissible path.\n\\item Let $k \\in \\{0,\\cdots,n\\}$ and assume that $\\tau_{0},\\cdots,\\tau_{k}$ and $\\tau_{k},\\cdots,\\tau_{n}$ are admissible paths. Then $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path if and only if for all $i \\in \\{0,\\cdots,k\\}$, $\\tau_{k} \\in H(\\tau_{i},\\tau_{n})$.\n\\item Let $k,l \\in \\{0,\\cdots,n\\}$ with $k \\leq l$. Then if $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path and if $\\tau_{k},\\cdots,\\tau_{l}$ are adjacent then $\\tau_{0},\\cdots,\\tau_{k},[\\tau_{k},\\cdots,\\tau_{l}],\\tau_{l},\\cdots,\\tau_{n}$ is again an admissible path.\n\\end{enumerate}\n\\end{Lem}",
+      "section": "Admissible paths",
+      "source_line": 722,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:733",
+      "pdf_page": 4,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:733",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\\begin{enumerate}\n\\item It is obvious.\n\\item Let us assume that $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path. Then for any $i$, since $\\tau_{i+1} \\in H(\\tau_{i},\\tau_{n})$, we have $H(\\tau_{i+1},\\tau_{n}) \\subseteq H(\\tau_{i},\\tau_{n})$. So for every $i \\leq k$, $\\tau_{k} \\in H(\\tau_{i},\\tau_{n})$.\n\n\n\nConversely, let us assume that for every $i \\in \\{0,\\cdots,k\\}$, $\\tau_{k} \\in H(\\tau_{i},\\tau_{n})$ and let us show that $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path. The only condition we have to check is that $\\tau_{i+1} \\in H(\\tau_{i},\\sigma)$. This is immediate for $i \\in \\{k, \\cdots, n-1\\}$ because $\\tau_{k},\\cdots,\\tau_{n}$ is an admissible path. For $i<k$, $\\tau_{0}, \\cdots, \\tau_{k}$ being an admissible path, $\\tau_{i+1} \\in H(\\tau_{i},\\tau_{k})$. But $\\tau_{k} \\in H(\\tau_{i},\\tau_{n})$ so $H(\\tau_{i},\\tau_{k}) \\subseteq H(\\tau_{i},\\tau_{n})$ and we have the result.\n\n\\item All we have to do is to check the conditions of being an admissible path between $\\tau_{k}$ and $[\\tau_{k},\\cdots,\\tau_{l}]$ and between $[\\tau_{k},\\cdots,\\tau_{l}]$ and $\\tau_{l}$. First we have $\\tau_{k} \\leq [\\tau_{k},\\cdots,\\tau_{l}]$ and $\\tau_{l} \\leq [\\tau_{k},\\cdots,\\tau_{l}]$. Since $\\tau_{l} \\leq [\\tau_{k},\\cdots,\\tau_{l}]$, $\\tau_{l} \\in H([\\tau_{k},\\cdots,\\tau_{l}],\\tau_{n})$. All that remains to be checked is that $[\\tau_{k},\\cdots,\\tau_{l}] \\in H(\\tau_{k},\\tau_{n})$, that is, for any $i \\in \\{k,\\cdots,l\\}$, $\\tau_{i} \\in H(\\tau_{k},\\tau_{n})$. Now, this condition is satisfied by 2, which completes the proof.\n\\end{enumerate}\n\\end{proof}",
+      "section": "Admissible paths",
+      "source_line": 733,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": "lemCheminsTendus",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemCheminOmega",
+      "type": "lemma",
+      "number": "2.4",
+      "title": "Existence of admissible path through ω ∈ H(σ,τ)",
+      "label": "lemCheminOmega",
+      "content_latex": "\\begin{Lem}\n\\label{lemCheminOmega}\nLet $\\sigma,\\tau,\\omega \\in \\bt$ such that $\\omega \\in H(\\sigma,\\tau)$. Then there exists an admissible path $\\tau_{0}=\\tau,\\cdots,\\tau_{k}=\\omega$ from $\\tau$ to $\\omega$ such that for all $i$, $\\omega \\in H(\\tau_{i},\\sigma)$.\n\n\nIn particular, there is an admissible path $\\tau_{0}=\\tau,\\cdots,\\tau_{k}=\\omega,\\cdots,\\tau_{n}=\\sigma$ from $\\tau$ to $\\sigma$ such that $\\tau_{0},\\cdots,\\tau_{k}$ is an admissible path from $\\tau$ to $\\omega$.\n\\end{Lem}",
+      "section": "Admissible paths",
+      "source_line": 746,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:754",
+      "pdf_page": 5,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:754",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nThe first assertion is \\cite[Lem. 2.15]{meyer_resolutions_2010} and the second one follows from 2. in Lemma \\ref{lemCheminsTendus}.\n\\end{proof}",
+      "section": "Admissible paths",
+      "source_line": 754,
+      "explicit_refs": [
+        "lemCheminsTendus"
+      ],
+      "citations": [
+        "meyer_resolutions_2010"
+      ],
+      "proves": "lemCheminOmega",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "definition:778",
+      "type": "definition",
+      "number": null,
+      "title": "Local maps ε_σ^τ via admissible paths",
+      "label": null,
+      "content_latex": "\\begin{Def}\nLet $\\tau,\\sigma \\in \\bt$. Take $\\tau_{0}=\\tau,\\cdots,\\tau_{n}=\\sigma$ an admissible path between $\\tau$ and $\\sigma$. We define $\\varepsilon_{\\sigma}^{\\tau} : V_{\\tau} \\rightarrow V_{\\sigma}$ by\n\\[ \\varepsilon_{\\sigma}^{\\tau} = \\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}.\\]\n\\end{Def}",
+      "section": "The local maps",
+      "source_line": 778,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "remark:784",
+      "type": "remark",
+      "number": null,
+      "title": "Compatibility with Wang's definition of ε for taut paths",
+      "label": null,
+      "content_latex": "\\begin{Rem}\nIf $(z_{0},\\cdots,z_{m})$ is a taut path according to \\cite{Wanga}, then the definition of $\\varepsilon_{z_{m}}^{z_{0}}$ given in \\cite{Wanga} Section 2.2 is the same as the one given here, if we consider the admissible path $(z_{0}, [z_{0},z_{1}], z_{1} ,\\cdots,z_{m-1},[z_{m-1},z_{m}],z_{m})$.\n\\end{Rem}",
+      "section": "The local maps",
+      "source_line": 784,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga",
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemadjacent",
+      "type": "lemma",
+      "number": "3.3",
+      "title": "Factorization of ε through join for adjacent polysimplices",
+      "label": "lemadjacent",
+      "content_latex": "\\begin{Lem}\n\\label{lemadjacent}\nLet $\\tau_{0},\\cdots,\\tau_{n} \\in \\bt$ be polysimplices such that for all $i$ we have $\\tau_{i} \\leq \\tau_{i+1}$ or $\\tau_{i+1} \\leq \\tau_{i}$. We also assume that $\\tau_{0},\\cdots,\\tau_{n}$ are adjacent. Then\n\\[ \\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} = \\varepsilon^{[\\tau_{0},\\cdots,\\tau_{n}]}_{\\tau_{n}} \\circ \\varepsilon_{[\\tau_{0},\\cdots,\\tau_{n}]}^{\\tau_{0}}.\\]\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 790,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:797",
+      "pdf_page": 6,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:797",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nLet us show the result by induction on $n$.\n\nThe result is clear for $n=1$. So let us take $\\tau_{0},\\cdots,\\tau_{n}$ as in the statement and assume the result true for $n-1$. The path $\\tau_{1},\\cdots,\\tau_{n}$ verifies the conditions of the statement thus by the induction hypothesis\n\\[ \\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{2}}^{\\tau_{1}} = \\varepsilon^{[\\tau_{1},\\cdots,\\tau_{n}]}_{\\tau_{n}} \\circ \\varepsilon_{[\\tau_{1},\\cdots,\\tau_{n}]}^{\\tau_{1}}\\]\nand so\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} = \\varepsilon^{[\\tau_{1},\\cdots,\\tau_{n}]}_{\\tau_{n}} \\circ \\varepsilon_{[\\tau_{1},\\cdots,\\tau_{n}]}^{\\tau_{1}} \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}.\\]\n\nThere are two cases:\n\\begin{enumerate}\n\\item If $\\tau_{0} \\leq \\tau_{1}$, then $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$ corresponds to the map\n\\[ V_{\\tau_{0}} \\twoheadrightarrow e_{\\tau_{1}}(V_{\\tau_{0}})=V_{\\tau_{1}} \\twoheadrightarrow e_{[\\tau_{1},\\cdots,\\tau_{n}]}(V_{\\tau_{1}})=e_{[\\tau_{1},\\cdots,\\tau_{n}]}( e_{\\tau_{1}}(V_{\\tau_{0}}))=V_{[\\tau_{1},\\cdots,\\tau_{n}]} \\hookrightarrow V_{\\tau_{n}}.\\]\nBut $e_{[\\tau_{1},\\cdots,\\tau_{n}]} e_{\\tau_{1}}=e_{[\\tau_{1},\\cdots,\\tau_{n}]}$ and since $\\tau_{0} \\leq \\tau_{1}$, $[\\tau_{1},\\cdots,\\tau_{n}]=[\\tau_{0},\\cdots,\\tau_{n}]$ and we have the result.\n\\item If $\\tau_{0} \\geq \\tau_{1}$, then $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$ corresponds to the map\n\\[ V_{\\tau_{0}} \\hookrightarrow e_{\\tau_{0}}(V_{\\tau_{1}}) \\twoheadrightarrow e_{[\\tau_{1},\\cdots,\\tau_{n}]}( e_{\\tau_{0}}(V_{\\tau_{1}}))\\hookrightarrow V_{\\tau_{n}}.\\]\nBut\n\\[e_{[\\tau_{1},\\cdots,\\tau_{n}]}( e_{\\tau_{0}}(V_{\\tau_{1}}))=e_{[\\tau_{1},\\cdots,\\tau_{n}]} e_{\\tau_{0}}(V_{\\tau_{0}})\\]\nbecause $V_{\\tau_{0}}=e_{\\tau_{0}}(V_{\\tau_{1}})$ and $e_{[\\tau_{1},\\cdots,\\tau_{n}]} e_{\\tau_{0}} = e_{[[\\tau_{1},\\cdots,\\tau_{n}],\\tau_{0}]} = e_{[\\tau_{0},\\cdots,\\tau_{n}]}$. So the first two arrows correspond to the map\n\\[V_{\\tau_{0}} \\twoheadrightarrow e_{[\\tau_{0},\\cdots,\\tau_{n}]}( V_{\\tau_{0}})\\]\nand we have the result.\n\\end{enumerate}\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 797,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": "lemadjacent",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "coradjacent",
+      "type": "corollary",
+      "number": "3.4",
+      "title": "Path-independence of ε_σ^τ for adjacent τ, σ",
+      "label": "coradjacent",
+      "content_latex": "\\begin{Cor}\n\\label{coradjacent}\nLet $\\tau$ and $\\sigma$ be adjacent polysimplices. Then $ \\varepsilon_{\\sigma}^{\\tau}$ does not depend on the admissible path chosen.\n\\end{Cor}",
+      "section": "The local maps",
+      "source_line": 820,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:825",
+      "pdf_page": 7,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:825",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nLet $\\tau_{0},\\cdots,\\tau_{n}$ be an admissible path between $\\tau$ and $\\sigma$. The polysimplices $\\tau$ and $\\sigma$ being adjacent, $H(\\sigma,\\tau)$ is the closure of $[\\sigma,\\tau]$. The path $\\tau_{0},\\cdots,\\tau_{n}$ being admissible, for all $i \\in \\{0,\\cdots,n\\}$, we have $\\tau_i \\in H(\\sigma,\\tau)$ and so $\\tau_i \\leq [\\sigma,\\tau]$. Therefore the polysimplices  $\\tau_{0},\\cdots,\\tau_{n}$ are adjacent and $[\\tau_{0},\\cdots,\\tau_{n}] \\leq [\\sigma,\\tau]$. Since $\\sigma,\\tau \\leq [\\tau_{0},\\cdots,\\tau_{n}]$, we have $[\\sigma,\\tau] \\leq [\\tau_{0},\\cdots,\\tau_{n}] $ and so $[\\tau_{0},\\cdots,\\tau_{n}] = [\\sigma,\\tau]$. Lemma \\ref{lemadjacent} tells us that $\\varepsilon_{\\sigma}^{\\tau} = \\varepsilon^{[\\sigma,\\tau]}_{\\sigma} \\circ \\varepsilon_{[\\sigma,\\tau]}^{\\tau}$ which is independent of the chosen path.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 825,
+      "explicit_refs": [
+        "lemadjacent"
+      ],
+      "citations": [],
+      "proves": "coradjacent",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemsimpliepsilon",
+      "type": "lemma",
+      "number": "3.5",
+      "title": "Simplification of ε along adjacent sub-paths",
+      "label": "lemsimpliepsilon",
+      "content_latex": "\\begin{Lem}\n\\label{lemsimpliepsilon}\nLet $\\tau_{0},\\cdots,\\tau_{n} \\in \\bt$ and $k,l \\in \\{0,\\cdots,n\\}$ with $k \\leq l$. Let us assume that $\\tau_{0},\\cdots,\\tau_{n}$ is an admissible path and that $\\tau_{k},\\cdots,\\tau_{l}$ are adjacent. Then\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\varepsilon^{\\tau_{l}}_{\\tau_{l+1}} \\circ \\varepsilon^{[\\tau_{k},\\cdots,\\tau_{l}]}_{\\tau_{l}} \\circ\\varepsilon^{\\tau_{k}}_{[\\tau_{k},\\cdots,\\tau_{l}]} \\circ \\varepsilon^{\\tau_{k-1}}_{\\tau_{k}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}.\\]\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 829,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:835",
+      "pdf_page": 7,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:835",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nLemma \\ref{lemCheminsTendus} 3. ensures that $\\tau_{0},\\cdots,\\tau_{k},[\\tau_{k},\\cdots,\\tau_{l}],\\tau_{l},\\cdots,\\tau_{n}$ is an admissible path. Now\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\varepsilon^{\\tau_{l}}_{\\tau_{l+1}} \\circ \\varepsilon^{\\tau_{l-1}}_{\\tau_{l}} \\circ \\cdots \\circ \\varepsilon^{\\tau_{k}}_{\\tau_{k+1}} \\circ \\varepsilon^{\\tau_{k-1}}_{\\tau_{k}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}.\\]\nSince $\\tau_{k},\\cdots,\\tau_{l}$ are adjacent, Lemma \\ref{lemadjacent} gives us\n\\[\\varepsilon^{\\tau_{l-1}}_{\\tau_{l}} \\circ \\cdots \\circ \\varepsilon^{\\tau_{k}}_{\\tau_{k+1}} = \\varepsilon^{[\\tau_{k},\\cdots,\\tau_{l}]}_{\\tau_{l}} \\circ\\varepsilon^{\\tau_{k}}_{[\\tau_{k},\\cdots,\\tau_{l}]}.\\]\nAnd we get the wanted result.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 835,
+      "explicit_refs": [
+        "lemCheminsTendus",
+        "lemadjacent"
+      ],
+      "citations": [],
+      "proves": "lemsimpliepsilon",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "definition:843",
+      "type": "definition",
+      "number": null,
+      "title": "ρ(τ,σ) = size of H(τ,σ)",
+      "label": null,
+      "content_latex": "\\begin{Def}\nLet $\\tau,\\sigma \\in \\bt$. We define $\\rho(\\tau,\\sigma)$ to be the number of polysimplices in $H(\\tau,\\sigma)$.{}\n\\end{Def}",
+      "section": "The local maps",
+      "source_line": 843,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemsimplificationchemin",
+      "type": "lemma",
+      "number": "3.7",
+      "title": "Path simplification preserving ε and controlling ρ",
+      "label": "lemsimplificationchemin",
+      "content_latex": "\\begin{Lem}\n\\label{lemsimplificationchemin}\nLet $\\tau_{0},\\cdots,\\tau_{n}$ be an admissible path and $\\omega \\in \\bt$ such that for all $i$, $\\tau_{n} \\in H(\\tau_{i},\\omega)$. Then there exists another admissible path $\\tau_{0}',\\cdots,\\tau_{m}'$ such that\n\\begin{enumerate}\n\\item $\\tau_{0}'=\\tau_{0}$ and $\\tau_{m}'=\\tau_{n}$\n\\item $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} = \\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'}$\n\\item if $\\tau_{i}'>\\tau_{i+1}'$ and $i+1 < m$ then $\\rho(\\tau_{i+1}',\\omega)<\\rho(\\tau_{i}',\\omega)$\n\\item For all $i$, $\\tau_{m}' \\in H(\\tau_{i}',\\omega)$\n\\end{enumerate}\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 847,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:860",
+      "pdf_page": 7,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:860",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nLet $k_{1}=\\max \\{ i>0 | \\tau_{0},\\cdots,\\tau_{i} \\text{ are adjacent}\\}$ (this set is non empty because $\\tau_{1}$ and $\\tau_{0}$ are adjacent). Likewise, if $k_{i}$ is defined and different from $n$, we define $k_{i+1}=\\max \\{ j>k_{i} | \\tau_{k_{i}},\\cdots,\\tau_{j} \\text{ are adjacent}\\}$. So we have just defined $m'$ integers, $k_{1},\\cdots,k_{m'}$ with $k_{m'}=n$. Let $k_{0}=0$ and $m=2m'$.\n\n\nLet us define for $i\\in \\{0,\\cdots,m'\\}$, $\\tau_{2i}'=\\tau_{k_{i}}$, and for $i\\in \\{0,\\cdots,m'-1\\}$, $\\tau_{2i+1}'=[\\tau_{k_{i}},\\cdots,\\tau_{k_{i+1}}]$.\n\nLemma \\ref{lemCheminsTendus} 3. applied $m'$ times ensures that $\\tau_{0}',\\cdots,\\tau_{m}'$ is an admissible path. Let us verify that this path satisfies the requested properties.\n\n\\begin{enumerate}\n\\item It is clear that $\\tau_{0}'=\\tau_{0}$ and $\\tau_{m}'=\\tau_{n}$.\n\n\\item Lemma \\ref{lemsimpliepsilon} applied $m'$ times gives us the result.\n\n\n\\item \nWe can only have $\\tau_{i}'>\\tau_{i+1}'$ if $i=2l+1$ is odd. So all we have to do is to show that $H(\\tau_{2l+2}',\\omega)\\varsubsetneq H(\\tau_{2l+1}',\\omega)$.\n\nBy definition of $k_{l+1}$, $\\tau_{k_{l+1}+1}$ and $\\tau_{2l+1}'$ are not adjacent ($\\tau_{k_{l+1}+1}$ exists because by hypothesis $i+1<m$). Take $\\mathcal{A}$ an apartment containing $H(\\tau_{k_{l}},\\omega)$. By hypothesis $\\tau_{n} \\in H(\\tau_{k_{l}},\\omega)$ and so $H(\\tau_{k_{l}},\\tau_{n}) \\subseteq H(\\tau_{k_{l}},\\omega)$. Hence $\\tau_{k_{l}}, \\cdots, \\tau_{n} \\in \\mathcal{A}$. Since $\\tau_{k_{l+1}+1}$ and $\\tau_{2l+1}'$ are not adjacent, there exists an affine root $a$ which separates $\\tau_{k_{l+1}+1}$ and $\\tau_{2l+1}'$. Let us say for example that $a_{|\\tau_{k_{l+1}+1}}>0$ and $a_{|\\tau_{2l+1}'}<0$. Notice that $\\tau_{k_{l+1}+1} \\in H(\\tau_{k_{l+1}},\\tau_{n})\\subseteq H(\\tau_{k_{l+1}},\\omega)=H(\\tau_{2l+2}',\\omega) \\subseteq H(\\tau_{2l+1}',\\omega)$. Hence if $a_{|\\omega}<0$, since $\\tau_{k_{l+1}+1} \\in H(\\tau_{2l+1}',\\omega)$ we would get that $a_{|\\tau_{k_{l+1}+1}}\\leq 0$ which is not. So $a_{|\\omega}\\geq 0$ and $a$ is an affine root which separates $\\tau_{2l+1}'$ from $H(\\tau_{k_{l+1}+1},\\omega)$ and so $\\tau_{2l+1}' \\notin H(\\tau_{k_{l+1}+1},\\omega)$. But $\\tau_{k_{l+1}+1}\\leq \\tau_{k_{l+1}}$ or $\\tau_{k_{l+1}+1}\\geq \\tau_{k_{l+1}}$. We cannot have $\\tau_{k_{l+1}+1}\\leq \\tau_{k_{l+1}}$ because if not $\\tau_{k_{l}},\\cdots,\\tau_{k_{l+1}+1}$ would be adjacent. So $\\tau_{k_{l+1}+1}\\geq \\tau_{k_{l+1}}$. Thus $H(\\tau_{k_{l+1}+1},\\omega) \\supseteq H(\\tau_{k_{l+1}},\\omega)=H(\\tau_{2l+2}',\\omega)$. So $\\tau_{2l+1}' \\notin H(\\tau_{2l+2}',\\omega)$ which completes the proof.\n\n\n\\item We wish to show that for every $i$, $\\tau_{n} \\in H(\\tau_{i}',\\omega)$. If $i=2l$ is even, the result is immediate since $\\tau_{2l}'=\\tau_{k_{l}}$. We are left with the case $i=2l+1$ odd, that is, we want to show that $\\tau_{n} \\in H([\\tau_{k_{l}},\\cdots,\\tau_{k_{l+1}}],\\omega)$. But $\\tau_{k_{l}} \\leq [\\tau_{k_{l}},\\cdots,\\tau_{k_{l+1}}]$ so $H(\\tau_{k_{l}},\\omega) \\subseteq H([\\tau_{k_{l}},\\cdots,\\tau_{k_{l+1}}],\\omega)$ and $\\tau_{n} \\in H([\\tau_{k_{l}},\\cdots,\\tau_{k_{l+1}}],\\omega)$.\n\\end{enumerate}\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 860,
+      "explicit_refs": [
+        "lemCheminsTendus",
+        "lemsimpliepsilon"
+      ],
+      "citations": [],
+      "proves": "lemsimplificationchemin",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemmaxi",
+      "type": "lemma",
+      "number": "3.8",
+      "title": "Maximal polysimplex τ̄ in H(τ,σ) above τ",
+      "label": "lemmaxi",
+      "content_latex": "\\begin{Lem}\n\\label{lemmaxi}\nLet $\\tau,\\sigma \\in \\bt$. Then there exists a unique maximal polysimplex $\\overline{\\tau} \\in H(\\tau,\\sigma)$ with $\\tau \\leq \\overline{\\tau}$. That is, a polysimplex $\\omega$ satisfies $\\omega \\in H(\\tau,\\sigma)$ and $\\tau \\leq \\omega$ if and only of $\\tau \\leq \\omega \\leq \\overline{\\tau}$.\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 884,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:889",
+      "pdf_page": 8,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:889",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nThe proof is identical to Lemma 2.9 in \\cite{meyer_resolutions_2010} by replacing $x$ with $\\sigma$.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 889,
+      "explicit_refs": [],
+      "citations": [
+        "meyer_resolutions_2010"
+      ],
+      "proves": "lemmaxi",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemhyperplan",
+      "type": "lemma",
+      "number": "3.9",
+      "title": "Affine root vanishing on τ̄ vanishes on H(σ,τ)",
+      "label": "lemhyperplan",
+      "content_latex": "\\begin{Lem}\n\\label{lemhyperplan}\nLet $\\tau,\\sigma,\\overline{\\tau}$ like in Lemma \\ref{lemmaxi}. Let $\\mathcal{A}$ be an apartment containing $H(\\sigma,\\tau)$ and $a$ an affine root. Then if $a_{|\\overline{\\tau}}=0$ we get $a_{|H(\\sigma,\\tau)}=0$.\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 893,
+      "explicit_refs": [
+        "lemmaxi"
+      ],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:898",
+      "pdf_page": 8,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:898",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nAssume that $a_{|\\overline{\\tau}}=0$. Denote by $H=\\ker(a)$ an affine hyperplane of $\\mathcal{A}$. We then need to show that $H(\\sigma,\\tau) \\subseteq H$. Let us prove the result by contradiction and assume that $H(\\sigma,\\tau) \\nsubseteq H$. Take $x \\in H(\\sigma,\\tau) \\backslash H$.\n\nLet $\\varphi : [0,1] \\rightarrow \\bt$ be a geodesic between an interior point of $\\overline{\\tau}$ and $x$. Since $\\varphi(0) \\in H$ if there were $t\\in ]0,1]$ such that $\\varphi(t)\\in H$, we would have that for every $t \\in [0,1]$, $\\varphi(t) \\in H$ and in particular that $x \\in H$ which is not. So $\\varphi(]0,1]) \\cap H = \\emptyset$. Each $\\varphi(t)$ belongs to a polysimplex $\\tau(t)$ and the map $t \\mapsto \\tau(t)$ is piecewise constant, so we can chose $t_{0}$ the smallest positive real where we have a jump. Let $\\omega = \\tau(t_{0}/2)$. We must have $\\overline{\\tau} \\leq \\omega$ or $\\omega \\leq \\overline{\\tau}$. But $\\omega \\nsubseteq H$ and $\\overline{\\tau} \\subseteq H$ so $\\overline{\\tau} < \\omega$. But $\\varphi(t_{0}/2) \\in H(\\tau,\\sigma)$ so $\\omega \\in H(\\tau,\\sigma)$ which contradicts the definition of $\\overline{\\tau}$.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 898,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": "lemhyperplan",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemenveloppemaximal",
+      "type": "lemma",
+      "number": "3.10",
+      "title": "τ̄ ∈ H(τ, ω̄) for nested convex hulls",
+      "label": "lemenveloppemaximal",
+      "content_latex": "\\begin{Lem}\n\\label{lemenveloppemaximal}\nLet $\\tau,\\omega,\\sigma \\in \\bt$ be polysimplices with $\\omega \\in H(\\tau,\\sigma)$. Take, as in Lemma \\ref{lemmaxi}, $\\overline{\\tau}$ maximal in $H(\\tau,\\sigma)$ such that $\\tau \\leq \\overline{\\tau}$ and $\\overline{\\omega}$ maximal in $H(\\omega,\\sigma)$ such that $\\omega \\leq \\overline{\\omega}$. Then $\\overline{\\tau} \\in H(\\tau,\\overline{\\omega})$.\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 904,
+      "explicit_refs": [
+        "lemmaxi"
+      ],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:909",
+      "pdf_page": 8,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:909",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nDenote by $\\overline{\\tau}'$ the maximal polysimplex of $H(\\tau,\\overline{\\omega})$ such that $\\tau \\leq \\overline{\\tau}'$. Then $H(\\tau,\\overline{\\omega}) \\subseteq H(\\tau,\\sigma)$ and so $\\overline{\\tau}' \\leq \\overline{\\tau}$.\n\nLet us assume that $\\overline{\\tau}' \\neq \\overline{\\tau}$. Then $\\overline{\\tau}'$ is a face of $\\overline{\\tau}$ and if we take $\\mathcal{A}$ an apartment containing $H(\\tau,\\sigma)$ there exists an affine root $a$ such that $a_{|\\overline{\\tau}'}=0$ and $a_{|\\overline{\\tau}}>0$. Since $a_{|\\overline{\\tau}'}=0$ by Lemma \\ref{lemhyperplan} $a_{|H(\\tau,\\overline{\\omega})}=0$ and in particular $a_{|\\tau}=0$ and $a_{|\\overline{\\omega}}=0$. Again by Lemma \\ref{lemhyperplan}, since $a_{|\\overline{\\omega}}=0$ we have $a_{|H(\\omega,\\sigma)}=0$ and so $a_{|\\sigma}=0$. Thus $a_{|\\tau}=0$ and $a_{|\\sigma}=0$ so $a_{|H(\\tau,\\sigma)}=0$. But $\\overline{\\tau} \\in H(\\tau,\\sigma)$, so $a_{|\\overline{\\tau}}=0$ which is absurd.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 909,
+      "explicit_refs": [
+        "lemhyperplan",
+        "lemhyperplan"
+      ],
+      "citations": [],
+      "proves": "lemenveloppemaximal",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemfactorisationdebut",
+      "type": "lemma",
+      "number": "3.11",
+      "title": "Factorization ε = ε ∘ ε_τ̄^τ through maximal τ̄",
+      "label": "lemfactorisationdebut",
+      "content_latex": "\\begin{Lem}\n\\label{lemfactorisationdebut}\nLet $\\tau,\\sigma \\in \\bt$. Take $\\overline{\\tau}$ maximal in $H(\\tau,\\sigma)$ such that $\\tau \\leq \\overline{\\tau}$. Let $\\tau_{0}=\\tau, \\cdots, \\tau_{n}=\\sigma$ an admissible path between $\\tau$ and $\\sigma$. Then $\\tau, \\overline{\\tau}, \\tau_{0}, \\cdots, \\tau_{n}$ is again an admissible path and\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} \\circ \\varepsilon_{\\tau_{0}}^{\\overline{\\tau}} \\circ \\varepsilon_{\\overline{\\tau}}^{\\tau}.\\]\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 915,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:921",
+      "pdf_page": 8,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:921",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nWe have that $\\tau \\leq \\overline{\\tau}$ and so $H(\\tau,\\sigma) \\subseteq H(\\overline{\\tau},\\sigma)$. Then since $\\overline{\\tau} \\in H(\\tau,\\sigma)$ we deduce that $H(\\overline{\\tau},\\sigma) \\subseteq H(\\tau,\\sigma)$. Therefore $H(\\tau,\\sigma) = H(\\overline{\\tau},\\sigma)$ and $\\tau, \\overline{\\tau}, \\tau_{0}, \\cdots, \\tau_{n}$ is an admissible path.\n\nLet us show by induction on $n$ that for every polysimplices $\\sigma$ and $\\tau$ and for every admissible path $\\tau_{0}, \\cdots, \\tau_{n}$ between $\\tau$ and $\\sigma$ that $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} \\circ \\varepsilon_{\\tau_{0}}^{\\overline{\\tau}} \\circ \\varepsilon_{\\overline{\\tau}}^{\\tau}$. The case $n=1$ is obvious. So let us assume the result true for $n-1$ and let us prove it for $n$.\n\nLet $\\varphi = \\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$. The map $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}} \\circ \\varepsilon_{\\tau_{0}}^{\\overline{\\tau}} \\circ \\varepsilon_{\\overline{\\tau}}^{\\tau}$ corresponds to the map\n\\[V_\\tau \\overset{p^{\\tau}_{\\overline{\\tau}}}{\\twoheadrightarrow} V_{\\overline{\\tau}}  \\overset{\\varphi^{\\overline{\\tau}}_{\\tau}}{\\hookrightarrow} V_\\tau  \\overset{\\varphi}{\\to} V_{\\sigma}.\\]\nLet $v \\in V_\\tau$, we wish to show that $\\varphi(v) = \\varphi(e_{\\overline{\\tau}}(v))$. The result we wish to demonstrate is therefore equivalent to saying that if $u \\in V_{\\tau}$ is such that $e_{\\overline{\\tau}}(u)=0$ then $\\varphi(u)=0$.\n\n\nLet $\\psi=\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{2}}^{\\tau_{1}}$. Denote by $\\overline{\\tau_{1}}$ the maximal polysimplex of $H(\\tau_{1},\\sigma)$ such that $\\tau_{1} \\leq \\overline{\\tau_{1}}$. Then by the induction hypothesis, we know that if $v \\in V_{\\tau_{1}}$ is such that $e_{\\overline{\\tau_{1}}}(v)=0$, $\\psi(v)=0$. Let $u \\in V_{\\tau}$ such that $e_{\\overline{\\tau}}(u)=0$, since $\\varphi = \\psi \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$, all we have to do is show that $e_{\\overline{\\tau_{1}}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=0$. There are two cases:\n\\begin{itemize}\n\n\\item $\\tau_{0} \\leq \\tau_{1}$\n\nThen $\\tau_{1} \\in H(\\tau_{0},\\sigma)$ and $\\tau_{0} \\in H(\\tau_{1},\\sigma)$ so $H(\\tau_{0},\\sigma)=H(\\tau_{1},\\sigma)$. Therefore $\\overline{\\tau_{1}}=\\overline{\\tau}$. Thus $e_{\\overline{\\tau_{1}}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=e_{\\overline{\\tau}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(e_{\\overline{\\tau}}u)=0$.\n\n\\item $\\tau_{0} \\geq \\tau_{1}$\n\nThen $\\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varphi_{\\tau_{1}}^{\\tau_{0}}:V_{\\tau_{0}} \\hookrightarrow V_{\\tau_{1}}$ and $e_{\\overline{\\tau_{1}}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=e_{\\overline{\\tau_{1}}}e_{\\tau}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))$. But $\\overline{\\tau} \\in H(\\tau,\\overline{\\tau_{1}})$ by Lemme \\ref{lemenveloppemaximal}, so Proposition 2.2 (e) of \\cite{meyer_resolutions_2010} tells us that $e_{\\overline{\\tau_{1}}}e_{\\tau}=e_{\\overline{\\tau_{1}}}e_{\\overline{\\tau}}e_{\\tau}=e_{\\overline{\\tau_{1}}}e_{\\tau}e_{\\overline{\\tau}}$ and therefore $e_{\\overline{\\tau_{1}}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=e_{\\overline{\\tau_{1}}}e_{\\tau}e_{\\overline{\\tau}}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(u))=e_{\\overline{\\tau_{1}}}e_{\\tau}(\\varepsilon_{\\tau_{1}}^{\\tau_{0}}(e_{\\overline{\\tau}}u))=0$.\n\\end{itemize}\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 921,
+      "explicit_refs": [
+        "lemenveloppemaximal"
+      ],
+      "citations": [
+        "meyer_resolutions_2010"
+      ],
+      "proves": "lemfactorisationdebut",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemrecurrencechemin",
+      "type": "lemma",
+      "number": "3.12",
+      "title": "Inductive step: path-independence under ρ-reduction",
+      "label": "lemrecurrencechemin",
+      "content_latex": "\\begin{Lem}\n\\label{lemrecurrencechemin}\nLet $\\tau,\\sigma \\in \\bt$ such that $\\rho(\\tau,\\sigma)>1$. Let $\\tau_{0},\\cdots,\\tau_{n}$ and $\\tau_{0}',\\cdots,\\tau_{m}'$ be two admissible paths between $\\tau$ and $\\sigma$. We assume that\n\\begin{itemize}\n\\item $\\mathcal{P}(\\rho(\\tau,\\sigma)-1)$ is true\n\\item $\\rho(\\tau_{1},\\sigma)<\\rho(\\tau,\\sigma)$ and $\\rho(\\tau_{1}',\\sigma)<\\rho(\\tau,\\sigma)$\n\\item There exists $\\omega \\in H(\\tau_{1},\\sigma) \\cap H(\\tau_{1}',\\sigma)$\n\\item $\\rho(\\tau,\\omega)<\\rho(\\tau,\\sigma)$\n\\item $\\tau_{1} \\in H(\\tau,\\omega)$ and  $\\tau_{1}' \\in H(\\tau,\\omega)$\n\\end{itemize}\nThen\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'}.\\]\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 947,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:961",
+      "pdf_page": 9,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:961",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n$\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=(\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{2}}^{\\tau_{1}})\\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$. Since $\\rho(\\tau_{1},\\sigma)<\\rho(\\tau,\\sigma)$ and that $\\mathcal{P}(\\rho(\\tau,\\sigma)-1)$ is true, $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{2}}^{\\tau_{1}}=\\varepsilon^{\\tau_{1}}_{\\sigma}$ does not depend on the admissible path. Moreover $\\omega \\in H(\\tau_{1},\\sigma)$ hence by Lemma \\ref{lemCheminOmega} there exists an admissible path between $\\tau_{1}$ and $\\sigma$ going through $\\omega$ such that the paths from $\\tau_{1}$ to $\\omega$ and from $\\omega$ to $\\sigma$ are admissible. Hence $\\varepsilon^{\\tau_{1}}_{\\sigma}=\\varepsilon^{\\omega}_{\\sigma} \\circ \\varepsilon^{\\tau_{1}}_{\\omega}$. Thus we have $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\omega}_{\\sigma} \\circ \\varepsilon^{\\tau_{1}}_{\\omega} \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}$. Since $\\rho(\\tau,\\omega)<\\rho(\\tau,\\sigma)$ and that $\\mathcal{P}(\\rho(\\tau,\\sigma)-1)$ is true, $\\varepsilon^{\\tau}_{\\omega}$ does not depend on the admissible path. In particular, since $\\tau_{1} \\in H(\\tau,\\omega)$, we can complete the path $\\tau_{0},\\tau_{1}$ in an admissible path between $\\tau$ and $\\omega$. The path from $\\tau_{1}$ to $\\omega$ is then also admissible and the same goes for the path $\\tau_{0},\\tau_{1}$. Thus $\\varepsilon^{\\tau_{1}}_{\\omega} \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon_{\\omega}^{\\tau_{0}}$. So we have just shown that\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon_{\\sigma}^{\\omega} \\circ \\varepsilon_{\\omega}^{\\tau}.\\]\n\nBut the assumptions about the paths $\\tau_{0},\\cdots,\\tau_{n}$ and $\\tau_{0}',\\cdots,\\tau_{m}'$ are symmetric, so we also have $\\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'}=\\varepsilon_{\\sigma}^{\\omega} \\circ \\varepsilon_{\\omega}^{\\tau}$. And finally\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'}.\\]\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 961,
+      "explicit_refs": [
+        "lemCheminOmega"
+      ],
+      "citations": [],
+      "proves": "lemrecurrencechemin",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemseparationsimplexe",
+      "type": "lemma",
+      "number": "3.13",
+      "title": "Separating hyperplane implies ρ-strict decrease",
+      "label": "lemseparationsimplexe",
+      "content_latex": "\\begin{Lem}\n\\label{lemseparationsimplexe}\nLet $\\tau,\\sigma \\in \\bt$. Take $\\mathcal{A}$ an apartment containing $H(\\sigma,\\tau)$. We assume that there exists an affine root $a$ such that $a_{|\\tau}>0$ and $a_{|\\sigma}<0$. Then if $\\omega \\in H(\\tau,\\sigma)$ is a polysimplex containing an interior point $x$ with $a(x)=0$, we get $\\rho(\\omega,\\sigma) < \\rho(\\tau,\\sigma)$ and $\\rho(\\tau,\\omega)<\\rho(\\tau,\\sigma)$.\n\\end{Lem}",
+      "section": "The local maps",
+      "source_line": 969,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:974",
+      "pdf_page": 9,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:974",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nSince the situation is symmetrical in $\\tau$ and $\\sigma$, all we have to do is show that $\\rho(\\omega,\\sigma) < \\rho(\\tau,\\sigma)$. Since $\\omega \\in H(\\tau,\\sigma)$ we have $H(\\omega,\\sigma) \\subseteq H(\\tau,\\sigma)$ and $\\rho(\\omega,\\sigma) \\leq \\rho(\\tau,\\sigma)$. Hence we need to prove that $H(\\omega,\\sigma) \\varsubsetneq H(\\tau,\\sigma)$.\n\n\nSince $a(x)=0$ and $x$ is an interior point of $\\omega$ we have $a_{|\\omega}=0$. Hence $a_{|\\omega} \\leq 0$, $a_{|\\sigma} < 0$ and $a_{|\\tau} > 0$ so $a$ separates $\\tau$ from $\\omega$ and $\\sigma$ and therefore $\\tau \\notin H(\\omega,\\sigma)$ which ends the proof.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 974,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": "lemseparationsimplexe",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proIndependanceChemin",
+      "type": "proposition",
+      "number": "3.14",
+      "title": "ε_σ^τ is independent of admissible path",
+      "label": "proIndependanceChemin",
+      "content_latex": "\\begin{Pro}\n\\label{proIndependanceChemin}\nLet $\\tau,\\sigma \\in \\bt$. Then $\\varepsilon_{\\sigma}^{\\tau}$ does not depend on the choice of the admissible path.\n\\end{Pro}",
+      "section": "The local maps",
+      "source_line": 981,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:986",
+      "pdf_page": 10,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "The local map ε_σ^τ does not depend on the choice of admissible path between τ and σ.",
+      "depth": 0
+    },
+    {
+      "id": "proof:986",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nWe prove the result by induction on $\\rho(\\tau,\\sigma)$. The result is true if $\\rho(\\tau,\\sigma)=1$. Then we assume that $\\rho(\\tau,\\sigma)>1$ and that $\\mathcal{P}(\\rho(\\tau,\\sigma)-1)$ is true.\n\n\\bigskip\n\nLet us then take two admissible paths $\\tau_{0},\\cdots,\\tau_{n}$ and $\\tau_{0}',\\cdots,\\tau_{m}'$. Lemma \\ref{lemfactorisationdebut} allows us to assume that $\\tau = \\overline{\\tau}$ where $\\overline{\\tau}$ is the maximal polysimplex of $H(\\tau,\\sigma)$ such that $\\tau \\leq \\overline{\\tau}$. By applying Lemma \\ref{lemsimplificationchemin} (with $\\omega=\\sigma$) we can assume that $\\tau_{0},\\cdots,\\tau_{n}$ and $\\tau_{0}',\\cdots,\\tau_{m}'$ verify the conditions of the latter. Moreover, by removing the first simplices if they are equal, we can assume that $\\tau_{0} \\neq \\tau_{1}$ and $\\tau_{0}' \\neq \\tau_{1}'$. In particular we have that $\\rho(\\tau_{1},\\sigma)<\\rho(\\tau,\\sigma)$ and $\\rho(\\tau_{1}',\\sigma)<\\rho(\\tau,\\sigma)$. The case where $\\tau$ and $\\sigma$ are adjacent is settled by Corollary \\ref{coradjacent}, so we assume that $\\tau$ and $\\sigma$ are not adjacent.\n\n\\bigskip\n\nLet $\\mathcal{A}$ be an apartment containing $H(\\tau,\\sigma)$. Since $\\tau$ and $\\sigma$ are two polysimplices non adjacent, there exists an affine root $a$ such that $a_{|\\tau}>0$ and $a_{|\\sigma}<0$. Since $\\tau$ is maximal, $\\tau_{1}<\\tau$ and so $a_{|\\tau_{1}}\\geq 0$. We deduce from $a_{|\\tau_{1}}\\geq 0$ and $a_{|\\sigma}< 0$ that there exists $x \\in H(\\tau_{1},\\sigma)$ such that $a(x)=0$. Likewise, there exists $y \\in H(\\tau_{1}',\\sigma)$ such that $a(y)=0$. Let $\\varphi:[0,1] \\rightarrow \\bt$ be a geodesic between $x$ and $y$. Since $x,y \\in H(\\tau,\\sigma)$, $\\varphi([0,1]) \\subseteq H(\\tau,\\sigma)$. Each $\\varphi(t)$ is an interior point of a polysimplex $\\omega(t)$. The map $t \\mapsto \\omega(t)$ is piecewise constant, so take $0=t_{0}<t_{2}<\\cdots<t_{2k-2}<t_{2k}=1$ the instants where there is a jump of the map $\\omega(t)$. Choose also $t_{1},\\cdots,t_{2k-1}$ such that $t_{0} < t_{1} < t_{2} < \\cdots < t_{2k-1} < t_{2k}$. Let $\\omega_{i}=\\omega(t_{i})$. Then $\\omega_{2i}$ and $\\omega_{2i+2}$ must be faces of $\\omega_{2i+1}$ and so for all $i$ we get either $\\omega_{i} \\leq \\omega_{i+1}$ or $\\omega_{i+1} \\leq \\omega_{i}$. Now $a(x)=a(y)=0$ so for all $t$, $a(\\varphi(t))=0$. Hence $\\omega_{i}$ contains an interior point $\\varphi(t_{i})$ such that $a(\\varphi(t_{i}))=0$. Lemma \\ref{lemseparationsimplexe} ensures that $\\rho(\\omega_{i},\\sigma) < \\rho(\\tau,\\sigma)$ and $\\rho(\\tau,\\omega_{i})<\\rho(\\tau,\\sigma)$. To summarize, we have just built a sequence of polysimplices $\\omega_{0},\\cdots,\\omega_{2k}$ such that for all $i$, $\\omega_{i} \\in H(\\tau,\\sigma)$, $\\rho(\\omega_{i},\\sigma) < \\rho(\\tau,\\sigma)$, $\\rho(\\tau,\\omega_{i})<\\rho(\\tau,\\sigma)$, $\\omega_{i} \\leq \\omega_{i+1}$ or $\\omega_{i+1} \\leq \\omega_{i}$, $\\omega_{0} \\in H(\\tau_{1},\\sigma)$ and $\\omega_{2k} \\in H(\\tau_{1}',\\sigma)$.\n\n\\bigskip\n\n\nLet $i \\in \\{0,1,\\cdots,2k\\}$. Since $\\omega_{i} \\in H(\\tau,\\sigma)$ take, thanks to Lemma \\ref{lemCheminOmega}, an admissible path $\\tau_{0}^{i}=\\tau,\\cdots,\\tau_{l_{i}}^{i}=\\omega_{i}$ from $\\tau$ to $\\omega_{i}$ such that for all $j$, $\\omega_{i} \\in H(\\tau_{j}^{i},\\sigma)$. With Lemma \\ref{lemsimplificationchemin} we can assume that the $\\tau_{j}^{i}$ satisfy the conditions of the latter. We complete the path $\\tau_{0}^{i},\\cdots,\\tau_{l_{i}}^{i}$ in an admissible path $\\tau_{0}^{i},\\cdots,\\tau_{n_{i}}^{i}$ between $\\tau$ and $\\sigma$ thanks to Lemma \\ref{lemCheminsTendus} 2. We also assume that $\\tau_{0}^{i} \\neq \\tau_{1}^{i}$ by removing the first polysimplices if they are equal. Since $\\tau_{0}^{i}=\\tau$ is maximal, $\\tau_{0}^{i} > \\tau_{1}^{i}$. If $\\tau_{1}^{i} \\neq \\omega_{i}$ then condition 3 of Lemma \\ref{lemsimplificationchemin} tells us that $\\rho(\\tau_{1}^{i},\\sigma)<\\rho(\\tau,\\sigma)$. And if $\\tau_{1}^{i} = \\omega_{i}$ then by construction of $\\omega_{i}$, $\\rho(\\tau_{1}^{i},\\sigma)=\\rho(\\omega_{i},\\sigma)<\\rho(\\tau,\\sigma)$. We have just constructed an admissible path $\\tau_{0}^{i},\\cdots,\\tau_{n_{i}}^{i}$ between $\\tau$ and $\\sigma$ such that $\\rho(\\tau_{1}^{i},\\sigma) < \\rho(\\tau,\\sigma)$, $\\omega_{i} \\in H(\\tau_{1}^{i},\\sigma)$ et $\\tau_{1}^{i} < \\tau$. Denote by\n\\[\\varepsilon_i:=\\varepsilon^{\\tau_{n_{i}-1}^{i}}_{\\tau_{n_{i}}^{i}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}^{i}}^{\\tau_{0}^{i}}\\]\nthe local map associated to this path.\n\n\\bigskip\n\nLet $i \\in \\{0,1,\\cdots,2k-1\\}$. We have $\\omega_{i} \\leq \\omega_{i+1}$ or $\\omega_{i+1} \\leq \\omega_{i}$. Denote by $\\omega$ the smallest of the two polysimplices so that $\\omega \\leq \\omega_{i}$ and $\\omega \\leq \\omega_{i+1}$. Then $\\tau_{0}^{i},\\cdots,\\tau_{n_{i}}^{i}$ and $\\tau_{0}^{i+1},\\cdots,\\tau_{n_{i+1}}^{i+1}$ satisfy the conditions of Lemma \\ref{lemrecurrencechemin}. Indeed, $\\rho(\\tau_{1}^{i},\\sigma) < \\rho(\\tau,\\sigma)$ and $\\rho(\\tau_{1}^{i+1},\\sigma) < \\rho(\\tau,\\sigma)$. Since $\\omega_{i} \\in H(\\tau_{1}^{i},\\sigma)$ and $\\omega \\leq \\omega_{i}$, we have that $\\omega \\in H(\\tau_{1}^{i},\\sigma)$, and likewise $\\omega \\in H(\\tau_{1}^{i+1},\\sigma)$. Then $\\rho(\\tau,\\omega_{i})<\\rho(\\tau,\\sigma)$ and $\\rho(\\tau,\\omega_{i+1})<\\rho(\\tau,\\sigma)$, therefore, since $\\omega=\\omega_{i}$ or $\\omega=\\omega_{i+1}$, $\\rho(\\tau,\\omega)<\\rho(\\tau,\\sigma)$. Finally $\\tau_{1}^{i} < \\tau$ so $\\tau_{1}^{i} \\in H(\\tau,\\omega)$ and likewise $\\tau_{1}^{i+1} \\in H(\\tau,\\omega)$. Hence Lemma \\ref{lemrecurrencechemin} tells us that $\\varepsilon_i=\\varepsilon_{i+1}$. This being true for every $i \\in \\{0,\\cdots,2k-1\\}$ we get $\\varepsilon_0=\\varepsilon_{2k}$.\n\n\\bigskip\n\nThe admissible path $\\tau_{0},\\cdots,\\tau_{n}$ and $\\tau_{0}^{0},\\cdots,\\tau_{n_{0}}^{0}$ also satisfy the conditions of \\ref{lemrecurrencechemin} with $\\omega = \\omega_{0}$ so $\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon_0$. It is the same with $\\tau_{0}',\\cdots,\\tau_{m}'$ and $\\tau_{0}^{2k},\\cdots,\\tau_{n_{2k}}^{2k}$ by taking $\\omega=\\omega_{2k}$ so $\\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'}=\\varepsilon_{2k}$. We finally find that\n\\[\\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}=\\varepsilon^{\\tau_{m-1}'}_{\\tau_{m}'} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}'}^{\\tau_{0}'},\\]\nwhich completes the proof.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 986,
+      "explicit_refs": [
+        "lemfactorisationdebut",
+        "lemsimplificationchemin",
+        "coradjacent",
+        "lemseparationsimplexe",
+        "lemCheminOmega",
+        "lemsimplificationchemin",
+        "lemCheminsTendus",
+        "lemsimplificationchemin",
+        "lemrecurrencechemin",
+        "lemrecurrencechemin",
+        "lemrecurrencechemin"
+      ],
+      "citations": [],
+      "proves": "proIndependanceChemin",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proEpsilonCompo",
+      "type": "proposition",
+      "number": "3.15",
+      "title": "Composition: ε_σ^τ = ε_σ^ω ∘ ε_ω^τ for ω ∈ H(τ,σ)",
+      "label": "proEpsilonCompo",
+      "content_latex": "\\begin{Pro}\n\\label{proEpsilonCompo}\nLet $\\tau,\\sigma,\\omega \\in \\bt$ such that $\\omega \\in H(\\tau,\\sigma)$. Then\n\\[ \\varepsilon^{\\tau}_{\\sigma}=\\varepsilon^{\\omega}_{\\sigma} \\circ \\varepsilon^{\\tau}_{\\omega}.\\]\n\\end{Pro}",
+      "section": "The local maps",
+      "source_line": 1017,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1023",
+      "pdf_page": 11,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "For ω ∈ H(τ,σ), the local maps compose: ε_σ^τ = ε_σ^ω ∘ ε_ω^τ.",
+      "depth": 0
+    },
+    {
+      "id": "proof:1023",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nProposition \\ref{proIndependanceChemin} tells us that $\\varepsilon^{\\tau}_{\\sigma}$ is independent of the chosen admissible path. All we have to do is then take, thanks to Lemma \\ref{lemCheminOmega}, an admissible path between $\\tau$ and $\\sigma$ going though $\\omega$ such that the two paths from $\\tau$ to $\\omega$ and from $\\omega$ to $\\sigma$ are admissible.\n\\end{proof}",
+      "section": "The local maps",
+      "source_line": 1023,
+      "explicit_refs": [
+        "proIndependanceChemin",
+        "lemCheminOmega"
+      ],
+      "citations": [],
+      "proves": "proEpsilonCompo",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "remark:1027",
+      "type": "remark",
+      "number": null,
+      "title": "Generalizes Wang's Lemmas 2.2.8-2.2.10",
+      "label": null,
+      "content_latex": "\\begin{Rem}\nProposition \\ref{proEpsilonCompo} proves Lemmas (2.2.8), (2.2.9) and (2.2.10) of \\cite{Wanga}.\n\\end{Rem}",
+      "section": "The local maps",
+      "source_line": 1027,
+      "explicit_refs": [
+        "proEpsilonCompo"
+      ],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemipcompo",
+      "type": "lemma",
+      "number": "4.1",
+      "title": "Composition p_x^Σ ∘ i_y^Σ = ε_x^y",
+      "label": "lemipcompo",
+      "content_latex": "\\begin{Lem}[{\\cite[Lem. 2.3.1]{Wanga}}]\n\t\\label{lemipcompo}\n\tThe composition of the homology morphisms\n\t\\[\n\t\tH_0(\\{y\\},\\Gamma)=V_y \\overset{i_{y}^\\Sigma}{\\longrightarrow} H_0(\\Sigma,\\Gamma) \\overset{p_{x}^\\Sigma}{\\longrightarrow} H_0(\\Sigma, \\underline{V_x})=V_x\n\t\\]\n\tis $\\varepsilon_x^y$. In particular $p_x^\\Sigma \\circ i_x^\\Sigma=\\Id_{V_x}$.\n\\end{Lem}",
+      "section": "Equivalence of categories",
+      "source_line": 1066,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": 12,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "prosystconst",
+      "type": "proposition",
+      "number": "4.2",
+      "title": "Consistency of idempotent system (e_x^Σ)",
+      "label": "prosystconst",
+      "content_latex": "\\begin{Pro}\n\t\\label{prosystconst}\n\tWe have the following properties:\n\t\\begin{enumerate}\n\t\t\\item If $x,y,z \\in \\Sigma_0$, $z,x$ are adjacent and $z \\in H(x,y)$, then $e_x^\\Sigma \\circ e_z^\\Sigma \\circ e_y^\\Sigma = e_x^\\Sigma \\circ e_y^\\Sigma$.\n\t\t\\item If $x,y \\in\\Sigma_0$ are adjacent, then $e_x^\\Sigma \\circ e_y^\\Sigma =e_y^\\Sigma \\circ e_x^\\Sigma$.\t\n\t\\end{enumerate}\n\\end{Pro}",
+      "section": "Equivalence of categories",
+      "source_line": 1084,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1093",
+      "pdf_page": 12,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1093",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tWe follow the proof of \\cite[Lem. 2.3.2]{Wanga}. We just need to adapt a little bit the proof of (2), because, for a general building, $[x,y]$ does not necessarily have dimension 1.\n\n\n\n\tSince $H_0(\\Sigma,\\Gamma)=\\sum_{w \\in \\Sigma_0} i_w^\\Sigma(V_w)$, it is enough to prove that for all $w\\in \\Sigma_0$, $e_x^\\Sigma \\circ e_y^\\Sigma =e_y^\\Sigma \\circ e_x^\\Sigma$ (resp. $e_x^\\Sigma \\circ e_z^\\Sigma \\circ e_y^\\Sigma = e_x^\\Sigma \\circ e_y^\\Sigma$) on $i_w^\\Sigma(V_w)$.\n\n\t\\medskip\n\n\tLet us start by (1). By Lemma \\ref{lemipcompo}, we have\n\t\\[\n\t\te_x^\\Sigma \\circ e_z^\\Sigma \\circ e_y^\\Sigma \\circ i_w^\\Sigma = i_x^\\Sigma \\circ p_x^\\Sigma \\circ i_z^\\Sigma \\circ p_z^\\Sigma \\circ i_y^\\Sigma \\circ p_y^\\Sigma \\circ i_w^\\Sigma = i_x^\\Sigma \\circ \\varepsilon^z_x \\circ \\varepsilon^y_z \\circ \\varepsilon^w_y\n\t\\]\n\tand\n\t\\[\n\t\te_x^\\Sigma \\circ e_y^\\Sigma \\circ i_w^\\Sigma = i_x^\\Sigma \\circ p_x^\\Sigma \\circ i_y^\\Sigma \\circ p_y^\\Sigma \\circ i_w^\\Sigma = i_x^\\Sigma \\circ \\varepsilon^y_x \\circ  \\varepsilon^w_y\n\t\\]\n\tWe obtain the equality with Proposition \\ref{proEpsilonCompo}.\n\n\t\\medskip\n\n\tNow, we prove (2). Let $a \\in V_w$. We have\n\t\\[\n\t\te_x^\\Sigma \\circ e_y^\\Sigma \\circ i_w^\\Sigma(a) -e_y^\\Sigma \\circ e_x^\\Sigma \\circ i_w^\\Sigma (a) = i_x^\\Sigma \\circ \\varepsilon^y_x \\circ  \\varepsilon^w_y(a)-i_y^\\Sigma \\circ \\varepsilon^x_y \\circ  \\varepsilon^w_x(a).\n\t\\]\n\tDenote by $i_x'^\\Sigma : V_x \\to V_x \\oplus V_y \\oplus \\bigoplus_{s \\in \\Sigma_0 \\setminus \\{x,y\\}} V_s$ (resp. $i_y'^\\Sigma : V_y \\to V_x \\oplus V_y \\oplus \\bigoplus_{s \\in \\Sigma_0 \\setminus \\{x,y\\}} V_s$) be the natural embedding $u \\mapsto (u,0,0,\\cdots)$ (resp. $v \\mapsto (0,v,0,\\cdots)$). We have two commutative diagrams\n\t\\begin{gather*}\n\t\t\\xymatrix{\n   \t\t V_x \\ar[r]^-{i_x'^\\Sigma} \\ar[dr]^-{i_x^\\Sigma} & \\bigoplus_{s \\in \\Sigma_0 } V_s \\ar@{->>}[d] \\\\\n    \t  & H_0(\\Sigma,\\Gamma)\n  \t\t} \n  \t\t\\quad \\text{ and } \\quad\n  \t\t\\xymatrix{\n   \t\t V_y \\ar[r]^-{i_y'^\\Sigma} \\ar[dr]^-{i_y^\\Sigma} & \\bigoplus_{s \\in \\Sigma_0 } V_s \\ar@{->>}[d] \\\\\n    \t  & H_0(\\Sigma,\\Gamma)\n  \t\t}.\n\t\\end{gather*}\n\tThus, we need to show that $i_x'^\\Sigma \\circ \\varepsilon^y_x \\circ  \\varepsilon^w_y(a)-i_y'^\\Sigma \\circ \\varepsilon^x_y \\circ  \\varepsilon^w_x(a) \\in \\partial(\\oplus_{\\sigma \\in \\Sigma, \\dim(\\sigma)=1}V_\\sigma)$. Let $z_0:=x,z_1,\\cdots,z_r:=y$ be a sequence of vertices of $[x,y]$ such that for all $0 \\leq i \\leq r-1$, $\\dim([z_i,z_{i+1}])=1$, and $r$ is minimal. Now we define an element $b \\in \\oplus_{\\sigma \\in \\Sigma, \\dim(\\sigma)=1}V_\\sigma$ by $b_{[z_i,z_{i+1}]}:= \\varepsilon^{[x,y]}_{[z_i,z_{i+1}]} \\circ \\varepsilon^{w}_{[x,y]} (a) \\in V_{[z_i,z_{i+1}]}$ and 0 elsewhere. By Lemma \\ref{proEpsilonCompo}, \n\t\\begin{align*}\n\t\t\\varphi^{[x,z_1]}_x(b_{[x,z_1]}) &=\\varepsilon^{[x,z_1]}_x  \\circ  \\varepsilon^{[x,y]}_{[x,z_{1}]} \\circ \\varepsilon^{w}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{x} \\circ \\varepsilon^{w}_{[x,y]} (a) \\\\\n\t\t&= \\varepsilon^{[x,y]}_{x} \\circ \\varepsilon^{y}_{[x,y]} \\circ \\varepsilon^{w}_{y} (a) = \\varepsilon^{y}_{x} \\circ \\varepsilon^{w}_{y} (a).\n\t\\end{align*}\n\tIn the same way,\n\t\\[\n\t\t\\varphi^{[y,z_{r-1}]}_y(b_{[y,z_{r-1}]}) =\\varepsilon^{[y,z_{r-1}]}_y  \\circ  \\varepsilon^{[x,y]}_{[y,z_{r-1}]} \\circ \\varepsilon^{x}_{[x,y]} \\circ \\varepsilon^{w}_{x} (a)   = \\varepsilon^{x}_{y} \\circ \\varepsilon^{w}_{x} (a).\n\t\\]\n\tAlso, for $1 \\leq i \\leq r-1$,\n\t\\[\n\t \t\\varphi^{[z_i,z_{i+1}]}_{z_i}(b_{[z_i,z_{i+1}]}) = \\varepsilon^{[z_i,z_{i+1}]}_{z_i} \\circ \\varepsilon^{[x,y]}_{[z_i,z_{i+1}]} \\circ \\varepsilon^{w}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{z_i} \\circ \\varepsilon^{w}_{[x,y]} (a)\n\t \\]\n\t \\[\n\t \t\\varphi^{[z_i,z_{i-1}]}_{z_{i}}(b_{[z_i,z_{i-1}]}) = \\varepsilon^{[z_i,z_{i-1}]}_{z_{i}} \\circ \\varepsilon^{[x,y]}_{[z_i,z_{i-1}]} \\circ \\varepsilon^{w}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{z_{i}} \\circ \\varepsilon^{w}_{[x,y]} (a)\n\t \\]\n\t Therefore \n\t \\[\n\t \t\\varphi^{[z_i,z_{i+1}]}_{z_i}(b_{[z_i,z_{i+1}]}) - \\varphi^{[z_i,z_{i-1}]}_{z_{i}}(b_{[z_i,z_{i-1}]}) = 0.\n\t \\]\n\t\n\n\tThus, $i_x'^\\Sigma \\circ \\varepsilon^y_x \\circ  \\varepsilon^w_y(a)-i_y'^\\Sigma \\circ \\varepsilon^x_y \\circ  \\varepsilon^w_x(a) = \\partial(b)$ and this finish the proof.\n\t\t\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1093,
+      "explicit_refs": [
+        "lemipcompo",
+        "proEpsilonCompo",
+        "proEpsilonCompo"
+      ],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": "prosystconst",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "prousig",
+      "type": "proposition",
+      "number": "4.3",
+      "title": "Decomposition H_0(Σ,Γ) = im(u) ⊕ ker(u), injectivity for Σ'=Σ",
+      "label": "prousig",
+      "content_latex": "\\begin{Pro}\n\t\\label{prousig}\n\tWe have\n\t\\begin{align*}\n\t\tu_{\\Sigma'}^{\\Sigma}(H_0(\\Sigma,\\Gamma))&=\\sum_{x\\in \\Sigma'_0} \\im(e_x^{\\Sigma})\\\\\n\t\t\\Ker(u_{\\Sigma'}^{\\Sigma})&=\\bigcap_{x\\in \\Sigma'_0} \\Ker(e_x^{\\Sigma})\\\\\n\t\tH_0(\\Sigma,\\Gamma)&=u_{\\Sigma'}^{\\Sigma}(H_0(\\Sigma,\\Gamma)) \\oplus \\Ker(u_{\\Sigma'}^{\\Sigma})\n\t\\end{align*}\n\n\tMoreover, if $\\Sigma'=\\Sigma$, then $\\Ker(u_{\\Sigma}^{\\Sigma})=\\bigcap_{x\\in \\Sigma_0} \\Ker(e_x^{\\Sigma})=0$.\n\\end{Pro}",
+      "section": "Equivalence of categories",
+      "source_line": 1158,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1170",
+      "pdf_page": 13,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1170",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tBy Proposition \\ref{prosystconst}, the system of idempotent $(e_x^\\Sigma)_{x \\in \\Sigma_0}$ satisfies the consistency properties of \\cite{meyer_resolutions_2010}. Hence the proof of \\cite[Thm. 2.12]{meyer_resolutions_2010} applies here. Now if $\\Sigma'=\\Sigma$, then $H_0(\\Sigma,\\Gamma)=\\sum_{x\\in \\Sigma'_0} i_x^{\\Sigma}(V_x) = \\sum_{x\\in \\Sigma'_0} \\im(e_x^{\\Sigma})$ thus $\\Ker(u_{\\Sigma}^{\\Sigma})=0$.\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1170,
+      "explicit_refs": [
+        "prosystconst"
+      ],
+      "citations": [
+        "meyer_resolutions_2010",
+        "meyer_resolutions_2010"
+      ],
+      "proves": "prousig",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proinjisigma",
+      "type": "proposition",
+      "number": "4.4",
+      "title": "Injectivity of i_{Σ'}^Σ : H_0(Σ',Γ) → H_0(Σ,Γ)",
+      "label": "proinjisigma",
+      "content_latex": "\\begin{Pro}[{\\cite[Prop. 2.4.1 (b)]{Wanga}}]\n\t\\label{proinjisigma}\n\tThe map $i_{\\Sigma'}^{\\Sigma} : H_0(\\Sigma',\\Gamma) \\to H_0(\\Sigma,\\Gamma)$ is injective.\n\\end{Pro}",
+      "section": "Equivalence of categories",
+      "source_line": 1174,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": "proof:1179",
+      "pdf_page": 13,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1179",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tWe have a commutative diagram \n\t\\[\n\t \\xymatrix{\n    H_0(\\Sigma',\\Gamma) \\ar[r]^-{i_\\Sigma^{\\Sigma'}} \\ar[d]^-{p_x^{\\Sigma'}} & H_0(\\Sigma,\\Gamma) \\ar[d]^-{p_x^{\\Sigma}} \\\\\n     V_x \\ar[r]^-{\\Id} & V_x\n  }\n\\]\nLet $a \\in H_0(\\Sigma',\\Gamma)$ such that $i_\\Sigma^{\\Sigma'}(a)=0$. By the previous diagram, for all $x \\in \\Sigma'_0$, $p_x^{\\Sigma'}(a)=0$. Thus $e_x^{\\Sigma'}(a)=i_x^{\\Sigma'} \\circ p_x^{\\Sigma'}(a)=0$, and $a \\in \\bigcap_{x\\in \\Sigma'_0} \\Ker(e_x^{\\Sigma'})$. By Proposition \\ref{prousig}, $a=0$.\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1179,
+      "explicit_refs": [
+        "prousig"
+      ],
+      "citations": [],
+      "proves": "proinjisigma",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "remark:1190",
+      "type": "remark",
+      "number": null,
+      "title": "Image of i_{Σ'}^Σ equals u_{Σ'}^Σ(H_0(Σ,Γ))",
+      "label": null,
+      "content_latex": "\\begin{Rem}\n\tThe proof of \\cite[Prop. 2.4.1 (b)]{Wanga} also shows that the image of $i_{\\Sigma'}^{\\Sigma}$ is $u_{\\Sigma'}^{\\Sigma}(H_0(\\Sigma,\\Gamma))$.\n\\end{Rem}",
+      "section": "Equivalence of categories",
+      "source_line": 1190,
+      "explicit_refs": [],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemHnzero",
+      "type": "lemma",
+      "number": "4.6",
+      "title": "Vanishing H_n(Σ,Γ)=0 for finite convex Σ, n>0",
+      "label": "lemHnzero",
+      "content_latex": "\\begin{Lem}\n\t\\label{lemHnzero}\n\tLet $\\Sigma$ be a finite convex subcomplex. For all $n>0$, $H_n(\\Sigma,\\Gamma)=0$.\n\\end{Lem}",
+      "section": "Equivalence of categories",
+      "source_line": 1194,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1199",
+      "pdf_page": 13,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemma:1202",
+      "type": "lemma",
+      "number": null,
+      "title": "Inductive step for H_n vanishing on non-polysimplex subcomplexes",
+      "label": null,
+      "content_latex": "\\begin{Lem}\n\t\tLet us assume that $\\Sigma$ is not a polysimplex and that for all $\\Sigma' \\subsetneq \\Sigma$ finite convex and for all $n>0$, $H_n(\\Sigma',\\Gamma)=0$. Then for all $n>0$, $H_n(\\Sigma,\\Gamma)=0$.\n\t\\end{Lem}",
+      "section": "Equivalence of categories",
+      "source_line": 1202,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1206",
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1206",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\t\tBy \\cite[Section 2.5]{meyer_resolutions_2010} we can decompose $\\Sigma$ as $\\Sigma=\\Sigma_{+} \\cup \\Sigma_{-}$, with $\\Sigma_{+}$, $\\Sigma_{-}$ and $\\Sigma_{0}:-\\Sigma_{+}\\cap \\Sigma_{-}$ are finite convex proper subcomplexes. The cellular chain complexes for these subcomplexes form an exact sequence\n\t\t\\[\n\t\t\tC_{*}(\\Sigma_{0},\\Gamma) \\rightarrowtail C_{*}(\\Sigma_{+},\\Gamma) \\oplus C_{*}(\\Sigma_{-},\\Gamma) \\twoheadrightarrow C_{*}(\\Sigma,\\Gamma)\n\t\t\\]\n\t\twhich generates a Mayer–Vietoris long exact sequence for their homology groups. Since $\\Sigma_{+}$, $\\Sigma_{-}$ and $\\Sigma_{0}$ satisfies the hypothesis of the Lemma, we get that $H_n(\\Sigma,\\Gamma)=0$ for $n\\geq 2$. By Proposition \\ref{proinjisigma} the map $i_{\\Sigma_0}^{\\Sigma_{+}} : H_0(\\Sigma_0,\\Gamma) \\to H_0(\\Sigma_{+},\\Gamma)$ is injective, hence $H_1(\\Sigma,\\Gamma)=0$.\n\t\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1206,
+      "explicit_refs": [
+        "proinjisigma"
+      ],
+      "citations": [
+        "meyer_resolutions_2010"
+      ],
+      "proves": "lemma:1202",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1199",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tAs in \\cite[Prop. 2.4.1 (a)]{Wanga} we prove the result by induction.\n\n\n\n\tWe are left with the case where $\\Sigma$ is a single polysimplex. Let $\\sigma \\subseteq \\Sigma$ and $x\\in \\Sigma_0$. We define an idempotent $e_x^\\sigma \\in \\End(V_\\sigma)$ by  $e_x^\\sigma:= \\varepsilon_{\\sigma}^{[x,\\sigma]} \\circ \\varepsilon^{\\sigma}_{[x,\\sigma]}$. Let $y\\in \\Sigma_0$ (hence $y$ is adjacent to $x$) and $z\\in H(x,y)$. By Lemma \\ref{lemadjacent}, $e_x^\\sigma e_y^\\sigma = \\varepsilon_{\\sigma}^{[x,y,\\sigma]} \\circ \\varepsilon^{\\sigma}_{[x,y,\\sigma]} = e_y^\\sigma e_x^\\sigma$ and $e_x^\\sigma e_z^\\sigma e_y^\\sigma = \\varepsilon_{\\sigma}^{[x,y,z,\\sigma]} \\circ \\varepsilon^{\\sigma}_{[x,y,z,\\sigma]}=\\varepsilon_{\\sigma}^{[x,y,\\sigma]} \\circ \\varepsilon^{\\sigma}_{[x,y,\\sigma]}=e_x^\\sigma e_y^\\sigma$. These idempotents satisfies the consistency properties, hence we can follow \\cite[Section 2.5]{meyer_resolutions_2010}. For $I \\subseteq \\Sigma_0$, denote by \n\t\\[\n\t\te_I^{\\sigma,0}:= \\prod_{x\\in I} e_x^\\sigma \\prod_{x\\notin I} (1-e_x^\\sigma) \\in \\End(V_\\sigma)\n\t\\]\n\nLet $\\Sigma_I$ be the subcomplex of $\\Sigma$ spanned by $I$. As in \\cite[Section 2.5]{meyer_resolutions_2010} and \\cite[Prop. 2.4.1 (a)]{Wanga} we have\n\t\\begin{enumerate}\n\t\t\\item $e_I^{\\sigma,0}(V_\\sigma) = 0 $  if $\\sigma_0 \\subsetneq I$ \n\t\t\\item $\\Id_{V_\\sigma}=\\sum_{I\\subseteq \\Sigma_0} e_I^{\\sigma,0} \\in \\End(V_\\sigma)$\n\t\t\\item  $ e_I^{\\sigma,0}  e_J^{\\sigma,0}$, if $I\\neq J$\n\t\t\\item $ e_I^{\\sigma,0}=0$ if $\\Sigma_I$ is not a single face of $\\Sigma$\n\t\\end{enumerate}\n\n\tDenote by $e_I^{0} := \\oplus_{\\sigma}e_I^{\\sigma,0} \\in \\End(C_{*}(\\Sigma,\\Gamma))$ the endomorphism on the chain complex, it commutes with the differential. Thus we get a decomposition\n\t\\[\n\t\tC_{*}(\\Sigma,\\Gamma) = \\bigoplus_{I\\subseteq \\Sigma_0} e_I^{0}(C_{*}(\\Sigma,\\Gamma)).\n\t\\]\n\tIf $e_I^{0}(C_{*}(\\Sigma,\\Gamma))\\neq 0$ then $I \\neq \\emptyset$ and $\\Sigma_I$ is a single face of $\\Sigma$. The chain complex $ e_I^{0}(C_{*}(\\Sigma,\\Gamma))$ computes the homology of $\\Sigma_I$ with constant coefficients in $e_I^{0}(V_{\\Sigma_I})$. Since $\\Sigma_I$ is contractible, $ e_I^{0}(C_{*}(\\Sigma,\\Gamma))$ is a resolution of $e_I^{0}(V_{\\Sigma_I})$ and we get that $H_n(\\Sigma,\\Gamma)=0$ for $n\\geq 1$.\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1199,
+      "explicit_refs": [
+        "lemadjacent"
+      ],
+      "citations": [
+        "Wanga",
+        "meyer_resolutions_2010",
+        "meyer_resolutions_2010",
+        "Wanga"
+      ],
+      "proves": "lemHnzero",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "theorem:1237",
+      "type": "theorem",
+      "number": null,
+      "title": "Exactness of C_*(BT,Γ) except in degree 0",
+      "label": null,
+      "content_latex": "\\begin{The}\nLet $e$ be a consistent system of idempotents satisfying condition \\eqref{eqcondidem} and $\\Gamma$ a $e$-coefficient system on $\\bt$. Then the chain complex $C_{*}(\\bt,\\Gamma)$ is exact except in degree 0.\n\\end{The}",
+      "section": "Equivalence of categories",
+      "source_line": 1237,
+      "explicit_refs": [
+        "eqcondidem"
+      ],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1241",
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "For a consistent system of idempotents satisfying the fixed-point condition and an e-coefficient system Γ, C_*(BT,Γ) is exact except in degree 0.",
+      "depth": 0
+    },
+    {
+      "id": "proof:1241",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tWe follow the proof of \\cite[Section 2.5]{meyer_resolutions_2010}. Let $(\\Sigma_n)_{n\\in \\mathbb{Z}}$ be an increasing sequence of  finite convex subcomplexes of $\\bt$ such that $\\bt=\\cup_n \\Sigma_n$ and $C_{*}(\\bt,\\Gamma) = \\varinjlim C_{*}(\\Sigma_n,\\Gamma)$. By Lemma \\ref{lemHnzero}, for all $n$ the complex\n\t\\[\n\t\tC_{*}(\\Sigma_n,\\Gamma) \\to H_0(\\Sigma_n,\\Gamma) \\to 0\n\t\\]\n\tis exact. The exactness of inductive limits in the category of $R$-modules tells us that $C_{*}(\\bt,\\Gamma)$ is a resolution of $\\varinjlim H_0(\\Sigma_n,\\Gamma)$. That is, for all $n\\geq 1$, $H_n(\\bt,\\Gamma)=0$ and $H_0(\\bt,\\Gamma)=\\varinjlim H_0(\\Sigma_n,\\Gamma)$.\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1241,
+      "explicit_refs": [
+        "lemHnzero"
+      ],
+      "citations": [
+        "meyer_resolutions_2010"
+      ],
+      "proves": "theorem:1237",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "lemDiagCommix",
+      "type": "lemma",
+      "number": "4.9",
+      "title": "Commutative diagram: i_y ∘ ε_y^x = e_y ∘ i_x",
+      "label": "lemDiagCommix",
+      "content_latex": "\\begin{Lem}\n\t\\label{lemDiagCommix}\n\n\tLet $x$ and $y$ be two adjacent vertices. Then we have a commutative diagram\n\t\\[\n\t \\xymatrix{\n    V_x \\ar[r]^-{i_x} \\ar[d]^-{\\varepsilon_y^x} & H_0(\\bt,\\Gamma) \\ar[d]^-{e_y} \\\\\n    V_y \\ar[r]^-{i_y} & H_0(\\bt,\\Gamma)\n  }\n\\]\n\\end{Lem}",
+      "section": "Equivalence of categories",
+      "source_line": 1259,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1271",
+      "pdf_page": 15,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "proof:1271",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tWe follow {\\cite[Lem. 2.4.2]{Wanga}} and adapt the proof as in Proposition \\ref{prosystconst}. Let $i_x' : V_x \\to V_x \\oplus V_y \\oplus \\bigoplus_{s \\in \\bts \\setminus \\{x,y\\}} V_s$ and $i_y' : V_y \\to V_x \\oplus V_y \\oplus \\bigoplus_{s \\in \\bts \\setminus \\{x,y\\}} V_s$ be the natural embeddings. Let $a \\in V_x$. We want to show that $e_y(i'_x(a))-i'_y(\\varepsilon^x_y(a)) \\in \\partial(\\bigoplus_{\\sigma \\in \\bt, \\dim(\\sigma)=1} V_\\sigma)$. Let $z_0:=x,z_1,\\cdots,z_r:=y$ be a sequence of vertices of $[x,y]$ such that for all $0 \\leq i \\leq r-1$, $\\dim([z_i,z_{i+1}])=1$, and $r$ is minimal. Now we define an element $b \\in \\oplus_{\\sigma \\in \\bt, \\dim(\\sigma)=1}V_\\sigma$ by $b_{[z_i,z_{i+1}]}:= \\varepsilon^{[x,y]}_{[z_i,z_{i+1}]} \\circ \\varepsilon^{x}_{[x,y]} (a) \\in V_{[z_i,z_{i+1}]}$ and 0 elsewhere. We are using repeatedly Lemma \\ref{proEpsilonCompo}, \n\t\\begin{align*}\n\t\t\\varphi^{[x,z_1]}_x(b_{[x,z_1]}) &=\\varepsilon^{[x,z_1]}_x  \\circ  \\varepsilon^{[x,y]}_{[x,z_{1}]} \\circ \\varepsilon^{x}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{x} \\circ \\varepsilon^{x}_{[x,y]} (a) \\\\\n\t\t&= e_{[x,y]}(a)=e_ye_x(a)=e_y(a).\n\t\t\t\\end{align*}\n\tIn the same way,\n\t\\[\n\t\t\\varphi^{[y,z_{r-1}]}_y(b_{[y,z_{r-1}]}) =\\varepsilon^{[y,z_{r-1}]}_y  \\circ  \\varepsilon^{[x,y]}_{[y,z_{r-1}]} \\circ \\varepsilon^{x}_{[x,y]} (a)   = \\varepsilon^{x}_{y} (a).\n\t\\]\n\tAlso, for $1 \\leq i \\leq r-1$,\n\t\\[\n\t \t\\varphi^{[z_i,z_{i+1}]}_{z_i}(b_{[z_i,z_{i+1}]}) = \\varepsilon^{[z_i,z_{i+1}]}_{z_i} \\circ \\varepsilon^{[x,y]}_{[z_i,z_{i+1}]} \\circ \\varepsilon^{x}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{z_i} \\circ \\varepsilon^{x}_{[x,y]} (a)\n\t \\]\n\t \\[\n\t \t\\varphi^{[z_i,z_{i-1}]}_{z_{i}}(b_{[z_i,z_{i-1}]}) = \\varepsilon^{[z_i,z_{i-1}]}_{z_{i}} \\circ \\varepsilon^{[x,y]}_{[z_i,z_{i-1}]} \\circ \\varepsilon^{x}_{[x,y]} (a) = \\varepsilon^{[x,y]}_{z_{i}} \\circ \\varepsilon^{x}_{[x,y]} (a)\n\t \\]\n\t therefore \n\t \\[\n\t \t\\varphi^{[z_i,z_{i+1}]}_{z_i}(b_{[z_i,z_{i+1}]}) - \\varphi^{[z_i,z_{i-1}]}_{z_{i}}(b_{[z_i,z_{i-1}]}) = 0.\n\t \\]\n\t Thus $e_y(i'_x(a))-i'_y(\\varepsilon^x_y(a)) = \\partial(b).$\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1271,
+      "explicit_refs": [
+        "prosystconst",
+        "proEpsilonCompo"
+      ],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": "lemDiagCommix",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "theEsssurj",
+      "type": "theorem",
+      "number": "4.10",
+      "title": "Essential surjectivity: Γ ≅ (σ ↦ e_σ H_0(BT,Γ))",
+      "label": "theEsssurj",
+      "content_latex": "\\begin{The}\n\\label{theEsssurj}\nLet $e$ be a consistent system of idempotents satisfying condition \\eqref{eqcondidem} and $\\Gamma$ a $e$-coefficient system on $\\bt$. Then $\\Gamma$ is isomorphic to the coefficient system $(\\sigma \\mapsto e_\\sigma(H_0(\\bt,\\Gamma)))$.\n\\end{The}",
+      "section": "Equivalence of categories",
+      "source_line": 1296,
+      "explicit_refs": [
+        "eqcondidem"
+      ],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1301",
+      "pdf_page": 15,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "Every e-coefficient system Γ is isomorphic to σ ↦ e_σ(H_0(BT,Γ)), proving essential surjectivity of the functor V ↦ Γ(V).",
+      "depth": 0
+    },
+    {
+      "id": "proof:1301",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\n\tThe proof is the same as in \\cite[Section 2.4]{Wanga}. We recall it here for the reader's convenience. By Lemma \\ref{lemDiagCommix}, the morphism $i_x$ has its image in $e_x(H_0(\\bt,\\Gamma))$. Let $\\sigma$ be a polysimplex containing $x$ and $i_\\sigma:=i_{x|e_\\sigma(V_x)}$. The morphism $i_\\sigma$ sends $\\varphi^{\\sigma}_x(V_\\sigma)$ into $e_\\sigma(H_0(\\bt,\\Gamma))$, and is independent of the choice of the vertex $x$ contained in $\\sigma$. Thus the morphisms $\\{i_\\sigma\\}_{\\sigma \\in \\bt}$ induce a morphism of coefficient systems\n\t\\[\n\t\t\\Gamma \\to (\\sigma \\mapsto e_\\sigma(H_0(\\bt,\\Gamma)))_{\\sigma \\in \\bt}.\n\t\\]\n\n\tSince $H_0(\\bt,\\Gamma)= \\sum_{y \\in \\bts} i_y(V_y)$ it is enough to prove that for all $y\\in \\bts$, $e_\\sigma(i_y(V_y)) \\subseteq i_x(V_\\sigma)$. Let $y \\in \\bts$. Now take a sequence of vertices $z_0=y, z_1, \\cdots, z_m=x$ such that $z_i$ and $z_{i+1}$ are adjacent, and $z_{i+1} \\in H(z_i,x)$. Then\n\t\\[\n\t\te_\\sigma(i_y(V_y)) = e_\\sigma e_y(i_y(V_y)) = e_\\sigma e_{z_1}e_y(i_y(V_y)) = \\cdots = e_\\sigma e_{z_m} \\cdots e_{z_1}e_y(i_y(V_y)).\n\t\\]\n\tBy Lemma \\ref{lemDiagCommix}\n\t\\begin{align*}\n\t\te_\\sigma e_{z_m} \\cdots e_{z_1}e_y(i_y(V_y)) &= e_\\sigma e_{z_m} \\cdots e_{z_2}i_{z_1}(\\varepsilon_{z_1}^{y}(V_y)) \\subseteq e_\\sigma e_{z_m} \\cdots e_{z_2}i_{z_1}(V_{z_1}) \\\\\n\t\t&= e_\\sigma e_{z_m} \\cdots e_{z_2}i_{z_2}(\\varepsilon_{z_2}^{z_1}(V_{z_1})) \\subseteq e_\\sigma e_{z_m} \\cdots i_{z_2}(V_{z_2}) \\\\\n\t\t&\\subseteq \\cdots \\subseteq e_\\sigma i_x(V_x) = i_x(V_\\sigma).\n\t\\end{align*}\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1301,
+      "explicit_refs": [
+        "lemDiagCommix",
+        "lemDiagCommix"
+      ],
+      "citations": [
+        "Wanga"
+      ],
+      "proves": "theEsssurj",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "theeqcat",
+      "type": "theorem",
+      "number": "4.11",
+      "title": "Main equivalence: Rep_e(G) ≃ Coef_e",
+      "label": "theeqcat",
+      "content_latex": "\\begin{The}\n\\label{theeqcat}\nLet $e$ be a consistent system of idempotents satisfying the condition \\eqref{eqcondidem}. Then the functor\n\\[\\begin{array}{ccc}\n \\rep[R][e]{G} & \\to & \\coef \\\\\n V & \\mapsto & \\Gamma(V) \\\\\n\\end{array}\\]\nadmits a quasi-inverse $\\Gamma \\mapsto H_0(\\bt,\\Gamma)$, hence induces an equivalence of categories.\n\\end{The}",
+      "section": "Equivalence of categories",
+      "source_line": 1322,
+      "explicit_refs": [
+        "eqcondidem"
+      ],
+      "citations": [],
+      "proves": null,
+      "proved_by": "proof:1332",
+      "pdf_page": 16,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "content_plain": "The functor V ↦ Γ(V) from smooth G-representations with V = Σ e_x V to e-coefficient systems is an equivalence, with quasi-inverse Γ ↦ H_0(BT,Γ).",
+      "depth": 0
+    },
+    {
+      "id": "proof:1332",
+      "type": "proof",
+      "number": null,
+      "title": null,
+      "label": null,
+      "content_latex": "\\begin{proof}\nThis is done in \\cite[Cor (2.1.11)]{Wanga}. By Theorem \\ref{theEsssurj}, the functor $V  \\mapsto  \\Gamma(V)$ is essentially surjective. Hence, we need to prove that it is fully faithful.\n\nFor $V,W \\in \\rep[R][e]{G}$, $\\Gamma$ induces a morphism\n\\[\\begin{array}{ccc}\n\\Gamma :  \\Hom_{RG}(V,W) & \\to & \\Hom_{\\Coef_e}(\\Gamma(V),\\Gamma(W)) \\\\\n f & \\mapsto & (f_\\sigma=f_{|e_\\sigma(V)} : V_\\sigma \\to W_\\sigma) \\\\\n\\end{array}.\\]\n\nLet $f \\in \\Hom_{RG}(V,W)$ such that $\\Gamma(f)=0$. Then for all vertex $x$, $f_{|e_x(V)}=0$. Since $V \\in \\rep[R][e]{G}$, $V=\\sum_{x \\in \\bts} e_x(V)$ and $f=0$. Hence the injectivity of $\\Gamma$. For the surjectivity, let $(g_\\sigma)_{\\sigma \\in \\bt} \\in \\Hom_{\\Coef_e}(\\Gamma(V),\\Gamma(W))$. We get a morphism of complexes\n\\[\n\tg : C_{*}(\\bt,\\Gamma(V)) \\to C_{*}(\\bt,\\Gamma(W)).\n\\]\n\nBy \\cite[Thm. 2.4]{meyer_resolutions_2010} $C_{*}(\\bt,\\Gamma(V)) \\to V \\to 0$ (resp. $C_{*}(\\bt,\\Gamma(W)) \\to W \\to 0$) is a resolution of $V$ (resp. W). Hence $H_0(g)$ induces a morphism of $RG$-modules\n\\[\n\tH_0(g) : V \\to W\n\\]\n\nBy definition, for every $x \\in \\bts$, we have $H_0(g)_{|e_x(V)}=g_x$. Hence for every $\\sigma \\in \\bt$ containing $x$, $H_0(g)_{|e_\\sigma(V)}=(H_0(g)_{|e_x(V)})_{|e_\\sigma(V)}=g_{x|e_\\sigma(V)}=g_\\sigma$. And we have the surjectivity.\n\\end{proof}",
+      "section": "Equivalence of categories",
+      "source_line": 1332,
+      "explicit_refs": [
+        "theEsssurj"
+      ],
+      "citations": [
+        "Wanga",
+        "meyer_resolutions_2010"
+      ],
+      "proves": "theeqcat",
+      "proved_by": null,
+      "pdf_page": null,
+      "source": "internal",
+      "cite_key": null,
+      "cite_detail": null,
+      "depth": 0
+    },
+    {
+      "id": "ext:meyer_resolutions_2010:definition:2.1",
+      "type": "definition",
+      "number": "2.1",
+      "title": "[MS10] Def. 2.1 — Consistent system of idempotents",
+      "label": null,
+      "source": "external",
+      "cite_key": "meyer_resolutions_2010",
+      "cite_detail": "Def 2.1",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "Definition of a consistent system of idempotents (e_σ) of the Hecke algebra H_R(G), indexed by polysimplices of the Bruhat-Tits building.",
+      "depth": 0
+    },
+    {
+      "id": "ext:meyer_resolutions_2010:theorem:3.1",
+      "type": "theorem",
+      "number": "3.1",
+      "title": "[MS10] Thm. 3.1 — Rep_e(G) is a Serre subcategory",
+      "label": null,
+      "source": "external",
+      "cite_key": "meyer_resolutions_2010",
+      "cite_detail": "Thm 3.1",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "The full subcategory Rep_e(G) of smooth G-representations V with V = Σ e_x V is a Serre subcategory of Rep_R(G).",
+      "depth": 0
+    },
+    {
+      "id": "ext:meyer_resolutions_2010:theorem:2.4",
+      "type": "theorem",
+      "number": "2.4",
+      "title": "[MS10] Thm. 2.4 — Resolution by coefficient systems",
+      "label": null,
+      "source": "external",
+      "cite_key": "meyer_resolutions_2010",
+      "cite_detail": "Thm. 2.4",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "For a consistent system of idempotents, C_*(BT, Γ(V)) → V → 0 is a resolution of V.",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:lemma:2.2.5",
+      "type": "lemma",
+      "number": "2.2.5",
+      "title": "[Wan17] Lem. 2.2.5 — Simplicial hull properties for GL_n",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Lem 2.2.5",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "For GL_n buildings, the simplicial hull of two vertices equals the intersection of two cones. Fails for general groups.",
+      "depth": 0
+    },
+    {
+      "id": "ext:meyer_resolutions_2010:lemma:2.15",
+      "type": "lemma",
+      "number": "2.15",
+      "title": "[MS10] Lem. 2.15 — Admissible path existence through ω",
+      "label": null,
+      "source": "external",
+      "cite_key": "meyer_resolutions_2010",
+      "cite_detail": "Lem. 2.15",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "If ω ∈ H(σ,τ) then there exists an admissible path from τ to ω staying within H(τ,σ).",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:lemma:2.3.1",
+      "type": "lemma",
+      "number": "2.3.1",
+      "title": "[Wan17] Lem. 2.3.1 — Composition p_x^Σ ∘ i_y^Σ = ε_x^y",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Lem. 2.3.1",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "The composition of homology morphisms V_y → H_0(Σ,Γ) → V_x equals ε_x^y. In particular p_x^Σ ∘ i_x^Σ = Id.",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:lemma:2.3.2",
+      "type": "lemma",
+      "number": "2.3.2",
+      "title": "[Wan17] Lem. 2.3.2 — Consistency of idempotent system on GL_n",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Lem. 2.3.2",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "For GL_n, the system (e_x^Σ) satisfies consistency: commutativity for adjacent vertices and absorption e_x e_z e_y = e_x e_y.",
+      "depth": 0
+    },
+    {
+      "id": "ext:meyer_resolutions_2010:theorem:2.12",
+      "type": "theorem",
+      "number": "2.12",
+      "title": "[MS10] Thm. 2.12 — Idempotent decomposition from consistency",
+      "label": null,
+      "source": "external",
+      "cite_key": "meyer_resolutions_2010",
+      "cite_detail": "Thm. 2.12",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "Defines u_{Σ'}^Σ and proves: im(u) = Σ im(e_x^Σ), ker(u) = ∩ ker(e_x^Σ), H_0(Σ,Γ) = im(u) ⊕ ker(u).",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:proposition:2.4.1(b)",
+      "type": "proposition",
+      "number": "2.4.1(b)",
+      "title": "[Wan17] Prop. 2.4.1(b) — Injectivity of i_{Σ'}^Σ",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Prop. 2.4.1 (b)",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "The map i_{Σ'}^Σ : H_0(Σ',Γ) → H_0(Σ,Γ) is injective for Σ' ⊂ Σ finite convex subcomplexes.",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:proposition:2.4.1(a)",
+      "type": "proposition",
+      "number": "2.4.1(a)",
+      "title": "[Wan17] Prop. 2.4.1(a) — Vanishing H_n(Σ,Γ)=0 for n>0",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Prop. 2.4.1 (a)",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "For finite convex subcomplexes Σ, the higher homology vanishes: H_n(Σ,Γ) = 0 for n > 0.",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:lemma:2.4.2",
+      "type": "lemma",
+      "number": "2.4.2",
+      "title": "[Wan17] Lem. 2.4.2 — Commutative diagram i_y ∘ ε = e_y ∘ i_x",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Lem. 2.4.2",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "For adjacent vertices x, y, the diagram commutes: i_y ∘ ε_y^x = e_y ∘ i_x.",
+      "depth": 0
+    },
+    {
+      "id": "ext:Wanga:corollary:2.1.11",
+      "type": "corollary",
+      "number": "2.1.11",
+      "title": "[Wan17] Cor. 2.1.11 — Full faithfulness of V ↦ Γ(V)",
+      "label": null,
+      "source": "external",
+      "cite_key": "Wanga",
+      "cite_detail": "Cor (2.1.11)",
+      "content_latex": "",
+      "section": null,
+      "source_line": 0,
+      "explicit_refs": [],
+      "citations": [],
+      "proves": null,
+      "proved_by": null,
+      "pdf_page": null,
+      "content_plain": "The functor V ↦ Γ(V) is fully faithful: Hom(V,W) ≅ Hom(Γ(V),Γ(W)).",
+      "depth": 0
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "proof:733",
+      "to": "lemCheminsTendus",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:754",
+      "to": "lemCheminsTendus",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminsTendus}"
+    },
+    {
+      "from": "proof:754",
+      "to": "lemCheminOmega",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:797",
+      "to": "lemadjacent",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:825",
+      "to": "lemadjacent",
+      "relation": "references",
+      "evidence": "\\ref{lemadjacent}"
+    },
+    {
+      "from": "proof:825",
+      "to": "coradjacent",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:835",
+      "to": "lemCheminsTendus",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminsTendus}"
+    },
+    {
+      "from": "proof:835",
+      "to": "lemadjacent",
+      "relation": "references",
+      "evidence": "\\ref{lemadjacent}"
+    },
+    {
+      "from": "proof:835",
+      "to": "lemsimpliepsilon",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:860",
+      "to": "lemCheminsTendus",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminsTendus}"
+    },
+    {
+      "from": "proof:860",
+      "to": "lemsimpliepsilon",
+      "relation": "references",
+      "evidence": "\\ref{lemsimpliepsilon}"
+    },
+    {
+      "from": "proof:860",
+      "to": "lemsimplificationchemin",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:889",
+      "to": "lemmaxi",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "lemhyperplan",
+      "to": "lemmaxi",
+      "relation": "references",
+      "evidence": "\\ref{lemmaxi}"
+    },
+    {
+      "from": "proof:898",
+      "to": "lemhyperplan",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "lemenveloppemaximal",
+      "to": "lemmaxi",
+      "relation": "references",
+      "evidence": "\\ref{lemmaxi}"
+    },
+    {
+      "from": "proof:909",
+      "to": "lemhyperplan",
+      "relation": "references",
+      "evidence": "\\ref{lemhyperplan}"
+    },
+    {
+      "from": "proof:909",
+      "to": "lemhyperplan",
+      "relation": "references",
+      "evidence": "\\ref{lemhyperplan}"
+    },
+    {
+      "from": "proof:909",
+      "to": "lemenveloppemaximal",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:921",
+      "to": "lemenveloppemaximal",
+      "relation": "references",
+      "evidence": "\\ref{lemenveloppemaximal}"
+    },
+    {
+      "from": "proof:921",
+      "to": "lemfactorisationdebut",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:961",
+      "to": "lemCheminOmega",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminOmega}"
+    },
+    {
+      "from": "proof:961",
+      "to": "lemrecurrencechemin",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:974",
+      "to": "lemseparationsimplexe",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemfactorisationdebut",
+      "relation": "references",
+      "evidence": "\\ref{lemfactorisationdebut}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemsimplificationchemin",
+      "relation": "references",
+      "evidence": "\\ref{lemsimplificationchemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "coradjacent",
+      "relation": "references",
+      "evidence": "\\ref{coradjacent}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemseparationsimplexe",
+      "relation": "references",
+      "evidence": "\\ref{lemseparationsimplexe}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemCheminOmega",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminOmega}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemsimplificationchemin",
+      "relation": "references",
+      "evidence": "\\ref{lemsimplificationchemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemCheminsTendus",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminsTendus}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemsimplificationchemin",
+      "relation": "references",
+      "evidence": "\\ref{lemsimplificationchemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemrecurrencechemin",
+      "relation": "references",
+      "evidence": "\\ref{lemrecurrencechemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemrecurrencechemin",
+      "relation": "references",
+      "evidence": "\\ref{lemrecurrencechemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "lemrecurrencechemin",
+      "relation": "references",
+      "evidence": "\\ref{lemrecurrencechemin}"
+    },
+    {
+      "from": "proof:986",
+      "to": "proIndependanceChemin",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1023",
+      "to": "proIndependanceChemin",
+      "relation": "references",
+      "evidence": "\\ref{proIndependanceChemin}"
+    },
+    {
+      "from": "proof:1023",
+      "to": "lemCheminOmega",
+      "relation": "references",
+      "evidence": "\\ref{lemCheminOmega}"
+    },
+    {
+      "from": "proof:1023",
+      "to": "proEpsilonCompo",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "remark:1027",
+      "to": "proEpsilonCompo",
+      "relation": "references",
+      "evidence": "\\ref{proEpsilonCompo}"
+    },
+    {
+      "from": "proof:1093",
+      "to": "lemipcompo",
+      "relation": "references",
+      "evidence": "\\ref{lemipcompo}"
+    },
+    {
+      "from": "proof:1093",
+      "to": "proEpsilonCompo",
+      "relation": "references",
+      "evidence": "\\ref{proEpsilonCompo}"
+    },
+    {
+      "from": "proof:1093",
+      "to": "proEpsilonCompo",
+      "relation": "references",
+      "evidence": "\\ref{proEpsilonCompo}"
+    },
+    {
+      "from": "proof:1093",
+      "to": "prosystconst",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1170",
+      "to": "prosystconst",
+      "relation": "references",
+      "evidence": "\\ref{prosystconst}"
+    },
+    {
+      "from": "proof:1170",
+      "to": "prousig",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1179",
+      "to": "prousig",
+      "relation": "references",
+      "evidence": "\\ref{prousig}"
+    },
+    {
+      "from": "proof:1179",
+      "to": "proinjisigma",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1206",
+      "to": "proinjisigma",
+      "relation": "references",
+      "evidence": "\\ref{proinjisigma}"
+    },
+    {
+      "from": "proof:1206",
+      "to": "lemma:1202",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1199",
+      "to": "lemadjacent",
+      "relation": "references",
+      "evidence": "\\ref{lemadjacent}"
+    },
+    {
+      "from": "proof:1199",
+      "to": "lemHnzero",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1241",
+      "to": "lemHnzero",
+      "relation": "references",
+      "evidence": "\\ref{lemHnzero}"
+    },
+    {
+      "from": "proof:1241",
+      "to": "theorem:1237",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1271",
+      "to": "prosystconst",
+      "relation": "references",
+      "evidence": "\\ref{prosystconst}"
+    },
+    {
+      "from": "proof:1271",
+      "to": "proEpsilonCompo",
+      "relation": "references",
+      "evidence": "\\ref{proEpsilonCompo}"
+    },
+    {
+      "from": "proof:1271",
+      "to": "lemDiagCommix",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1301",
+      "to": "lemDiagCommix",
+      "relation": "references",
+      "evidence": "\\ref{lemDiagCommix}"
+    },
+    {
+      "from": "proof:1301",
+      "to": "lemDiagCommix",
+      "relation": "references",
+      "evidence": "\\ref{lemDiagCommix}"
+    },
+    {
+      "from": "proof:1301",
+      "to": "theEsssurj",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:1332",
+      "to": "theEsssurj",
+      "relation": "references",
+      "evidence": "\\ref{theEsssurj}"
+    },
+    {
+      "from": "proof:1332",
+      "to": "theeqcat",
+      "relation": "proves",
+      "evidence": "proof association"
+    },
+    {
+      "from": "proof:754",
+      "to": "ext:meyer_resolutions_2010:lemma:2.15",
+      "relation": "cites_result",
+      "evidence": "\\cite[Lem. 2.15]{meyer_resolutions_2010}"
+    },
+    {
+      "from": "lemipcompo",
+      "to": "ext:Wanga:lemma:2.3.1",
+      "relation": "cites_result",
+      "evidence": "\\cite[Lem. 2.3.1]{Wanga}"
+    },
+    {
+      "from": "proof:1093",
+      "to": "ext:Wanga:lemma:2.3.2",
+      "relation": "cites_result",
+      "evidence": "\\cite[Lem. 2.3.2]{Wanga}"
+    },
+    {
+      "from": "proof:1170",
+      "to": "ext:meyer_resolutions_2010:theorem:2.12",
+      "relation": "cites_result",
+      "evidence": "\\cite[Thm. 2.12]{meyer_resolutions_2010}"
+    },
+    {
+      "from": "proinjisigma",
+      "to": "ext:Wanga:proposition:2.4.1(b)",
+      "relation": "cites_result",
+      "evidence": "\\cite[Prop. 2.4.1 (b)]{Wanga}"
+    },
+    {
+      "from": "remark:1190",
+      "to": "ext:Wanga:proposition:2.4.1(b)",
+      "relation": "cites_result",
+      "evidence": "\\cite[Prop. 2.4.1 (b)]{Wanga}"
+    },
+    {
+      "from": "proof:1199",
+      "to": "ext:Wanga:proposition:2.4.1(a)",
+      "relation": "cites_result",
+      "evidence": "\\cite[Prop. 2.4.1 (a)]{Wanga}"
+    },
+    {
+      "from": "proof:1271",
+      "to": "ext:Wanga:lemma:2.4.2",
+      "relation": "cites_result",
+      "evidence": "\\cite[Lem. 2.4.2]{Wanga}"
+    },
+    {
+      "from": "proof:1332",
+      "to": "ext:Wanga:corollary:2.1.11",
+      "relation": "cites_result",
+      "evidence": "\\cite[Cor (2.1.11)]{Wanga}"
+    },
+    {
+      "from": "proof:1332",
+      "to": "ext:meyer_resolutions_2010:theorem:2.4",
+      "relation": "cites_result",
+      "evidence": "\\cite[Thm. 2.4]{meyer_resolutions_2010}"
+    },
+    {
+      "from": "lemCheminOmega",
+      "to": "definition:707",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\tau_{0}=\\tau$ defined in definition:707"
+    },
+    {
+      "from": "definition:778",
+      "to": "definition:707",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\tau_{0}=\\tau$ defined in definition:707"
+    },
+    {
+      "from": "lemfactorisationdebut",
+      "to": "definition:707",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\tau_{0}=\\tau$ defined in definition:707"
+    },
+    {
+      "from": "lemrecurrencechemin",
+      "to": "definition:843",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843"
+    },
+    {
+      "from": "proof:961",
+      "to": "definition:843",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843"
+    },
+    {
+      "from": "lemseparationsimplexe",
+      "to": "definition:843",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843"
+    },
+    {
+      "from": "proof:974",
+      "to": "definition:843",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843"
+    },
+    {
+      "from": "proof:986",
+      "to": "definition:843",
+      "relation": "uses_definition",
+      "evidence": "uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843"
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec:1",
+      "level": 1,
+      "title": "Introduction",
+      "source_line": 550,
+      "object_ids": [
+        "theorem:584",
+        "theorem:591",
+        "remark:600"
+      ]
+    },
+    {
+      "id": "sec:2",
+      "level": 1,
+      "title": "Coefficient systems and systems of idempotents",
+      "source_line": 616,
+      "object_ids": [
+        "defcoherent"
+      ]
+    },
+    {
+      "id": "sec:3",
+      "level": 1,
+      "title": "Admissible paths",
+      "source_line": 700,
+      "object_ids": [
+        "definition:707",
+        "remCheminTendu",
+        "lemCheminsTendus",
+        "proof:733",
+        "lemCheminOmega",
+        "proof:754"
+      ]
+    },
+    {
+      "id": "sec:4",
+      "level": 1,
+      "title": "The local maps",
+      "source_line": 759,
+      "object_ids": [
+        "definition:778",
+        "remark:784",
+        "lemadjacent",
+        "proof:797",
+        "coradjacent",
+        "proof:825",
+        "lemsimpliepsilon",
+        "proof:835",
+        "definition:843",
+        "lemsimplificationchemin",
+        "proof:860",
+        "lemmaxi",
+        "proof:889",
+        "lemhyperplan",
+        "proof:898",
+        "lemenveloppemaximal",
+        "proof:909",
+        "lemfactorisationdebut",
+        "proof:921",
+        "lemrecurrencechemin",
+        "proof:961",
+        "lemseparationsimplexe",
+        "proof:974",
+        "proIndependanceChemin",
+        "proof:986",
+        "proEpsilonCompo",
+        "proof:1023",
+        "remark:1027"
+      ]
+    },
+    {
+      "id": "sec:5",
+      "level": 1,
+      "title": "Equivalence of categories",
+      "source_line": 1031,
+      "object_ids": [
+        "lemipcompo",
+        "prosystconst",
+        "proof:1093",
+        "prousig",
+        "proof:1170",
+        "proinjisigma",
+        "proof:1179",
+        "remark:1190",
+        "lemHnzero",
+        "lemma:1202",
+        "proof:1206",
+        "proof:1199",
+        "theorem:1237",
+        "proof:1241",
+        "lemDiagCommix",
+        "proof:1271",
+        "theEsssurj",
+        "proof:1301",
+        "theeqcat",
+        "proof:1332"
+      ]
+    }
+  ],
+  "notation_table": [
+    {
+      "symbol": "$e=(e_{x})_{x\\in \\bts}$",
+      "description": "",
+      "defined_in": "defcoherent",
+      "source_line": 660
+    },
+    {
+      "symbol": "$e_{x}e_{y}=e_{y}e_{x}$",
+      "description": "",
+      "defined_in": "defcoherent",
+      "source_line": 660
+    },
+    {
+      "symbol": "$e_{x}e_{z}e_{y}=e_{x}e_{y}$",
+      "description": "",
+      "defined_in": "defcoherent",
+      "source_line": 660
+    },
+    {
+      "symbol": "$e_{gx}=ge_{x}g^{-1}$",
+      "description": "",
+      "defined_in": "defcoherent",
+      "source_line": 660
+    },
+    {
+      "symbol": "$\\tau_{0}=\\tau$",
+      "description": "",
+      "defined_in": "definition:707",
+      "source_line": 707
+    },
+    {
+      "symbol": "$\\tau_{n}=\\sigma$",
+      "description": "",
+      "defined_in": "definition:707",
+      "source_line": 707
+    },
+    {
+      "symbol": "$\\varepsilon_{\\sigma}^{\\tau} : V_{\\tau} \\rightarrow V_{\\sigma}$",
+      "description": "by\n\\[ \\varepsilon_{\\sigma}^{\\tau} = \\varepsilon^{\\tau_{n-1}}_{\\tau_{n}} \\circ \\cdots \\circ \\varepsilon_{\\tau_{1}}^{\\tau_{0}}",
+      "defined_in": "definition:778",
+      "source_line": 778
+    },
+    {
+      "symbol": "$\\tau_{0}=\\tau,\\cdots,\\tau_{n}=\\sigma$",
+      "description": "",
+      "defined_in": "definition:778",
+      "source_line": 778
+    },
+    {
+      "symbol": "$\\rho(\\tau,\\sigma)$",
+      "description": "to be the number of polysimplices in $H(\\tau,\\sigma)$",
+      "defined_in": "definition:843",
+      "source_line": 843
+    }
+  ],
+  "dot_graph": "digraph G {\n  rankdir=BT;\n  node [fontname=\"Helvetica\", fontsize=10];\n  edge [fontsize=8];\n\n  \"theorem_584\" [label=\"Theorem\\nExactness of C_*(BT, Γ) for e-coefficient systems\", shape=ellipse, style=filled, fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"theorem:584\"];\n  \"theorem_591\" [label=\"Theorem\\nEquivalence Rep_e(G) ≅ Coef_e via Γ ↦ H_0(BT, Γ)\", shape=ellipse, style=filled, fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"theorem:591\"];\n  \"remark_600\" [label=\"Remark\\nContext: Wang (GL_n case), Dat (block equivalences\", shape=box, style=filled, fillcolor=\"#E0E0E0\", color=\"#808080\", tooltip=\"remark:600\"];\n  \"defcoherent\" [label=\"Definition 1.1\\nConsistent system of idempotents\", shape=box, style=filled, fillcolor=\"#A3D6FF\", color=\"#4A90D9\", tooltip=\"defcoherent\"];\n  \"definition_707\" [label=\"Definition\\nAdmissible path between polysimplices\", shape=box, style=filled, fillcolor=\"#A3D6FF\", color=\"#4A90D9\", tooltip=\"definition:707\"];\n  \"remCheminTendu\" [label=\"Remark 2.2\\nTaut paths vs admissible paths\", shape=box, style=filled, fillcolor=\"#E0E0E0\", color=\"#808080\", tooltip=\"remCheminTendu\"];\n  \"lemCheminsTendus\" [label=\"Lemma 2.3\\nProperties of admissible paths (truncation, concat\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemCheminsTendus\"];\n  \"lemCheminOmega\" [label=\"Lemma 2.4\\nExistence of admissible path through ω ∈ H(σ,τ)\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemCheminOmega\"];\n  \"definition_778\" [label=\"Definition\\nLocal maps ε_σ^τ via admissible paths\", shape=box, style=filled, fillcolor=\"#A3D6FF\", color=\"#4A90D9\", tooltip=\"definition:778\"];\n  \"remark_784\" [label=\"Remark\\nCompatibility with Wang's definition of ε for taut\", shape=box, style=filled, fillcolor=\"#E0E0E0\", color=\"#808080\", tooltip=\"remark:784\"];\n  \"lemadjacent\" [label=\"Lemma 3.3\\nFactorization of ε through join for adjacent polys\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemadjacent\"];\n  \"coradjacent\" [label=\"Corollary 3.4\\nPath-independence of ε_σ^τ for adjacent τ, σ\", shape=ellipse, style=filled, fillcolor=\"#B3FFB3\", color=\"#4AD94A\", tooltip=\"coradjacent\"];\n  \"lemsimpliepsilon\" [label=\"Lemma 3.5\\nSimplification of ε along adjacent sub-paths\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemsimpliepsilon\"];\n  \"definition_843\" [label=\"Definition\\nρ(τ,σ) = size of H(τ,σ)\", shape=box, style=filled, fillcolor=\"#A3D6FF\", color=\"#4A90D9\", tooltip=\"definition:843\"];\n  \"lemsimplificationchemin\" [label=\"Lemma 3.7\\nPath simplification preserving ε and controlling ρ\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemsimplificationchemin\"];\n  \"lemmaxi\" [label=\"Lemma 3.8\\nMaximal polysimplex τ̄ in H(τ,σ) above τ\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemmaxi\"];\n  \"lemhyperplan\" [label=\"Lemma 3.9\\nAffine root vanishing on τ̄ vanishes on H(σ,τ)\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemhyperplan\"];\n  \"lemenveloppemaximal\" [label=\"Lemma 3.10\\nτ̄ ∈ H(τ, ω̄) for nested convex hulls\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemenveloppemaximal\"];\n  \"lemfactorisationdebut\" [label=\"Lemma 3.11\\nFactorization ε = ε ∘ ε_τ̄^τ through maximal τ̄\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemfactorisationdebut\"];\n  \"lemrecurrencechemin\" [label=\"Lemma 3.12\\nInductive step: path-independence under ρ-reductio\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemrecurrencechemin\"];\n  \"lemseparationsimplexe\" [label=\"Lemma 3.13\\nSeparating hyperplane implies ρ-strict decrease\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemseparationsimplexe\"];\n  \"proIndependanceChemin\" [label=\"Proposition 3.14\\nε_σ^τ is independent of admissible path\", shape=ellipse, style=filled, fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"proIndependanceChemin\"];\n  \"proEpsilonCompo\" [label=\"Proposition 3.15\\nComposition: ε_σ^τ = ε_σ^ω ∘ ε_ω^τ for ω ∈ H(τ,σ)\", shape=ellipse, style=filled, fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"proEpsilonCompo\"];\n  \"remark_1027\" [label=\"Remark\\nGeneralizes Wang's Lemmas 2.2.8-2.2.10\", shape=box, style=filled, fillcolor=\"#E0E0E0\", color=\"#808080\", tooltip=\"remark:1027\"];\n  \"lemipcompo\" [label=\"Lemma 4.1\\nComposition p_x^Σ ∘ i_y^Σ = ε_x^y\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemipcompo\"];\n  \"prosystconst\" [label=\"Proposition 4.2\\nConsistency of idempotent system (e_x^Σ)\", shape=ellipse, style=filled, fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"prosystconst\"];\n  \"prousig\" [label=\"Proposition 4.3\\nDecomposition H_0(Σ,Γ) = im(u) ⊕ ker(u), injectivi\", shape=ellipse, style=filled, fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"prousig\"];\n  \"proinjisigma\" [label=\"Proposition 4.4\\nInjectivity of i_{Σ'}^Σ : H_0(Σ',Γ) → H_0(Σ,Γ)\", shape=ellipse, style=filled, fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"proinjisigma\"];\n  \"remark_1190\" [label=\"Remark\\nImage of i_{Σ'}^Σ equals u_{Σ'}^Σ(H_0(Σ,Γ))\", shape=box, style=filled, fillcolor=\"#E0E0E0\", color=\"#808080\", tooltip=\"remark:1190\"];\n  \"lemHnzero\" [label=\"Lemma 4.6\\nVanishing H_n(Σ,Γ)=0 for finite convex Σ, n>0\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemHnzero\"];\n  \"lemma_1202\" [label=\"Lemma\\nInductive step for H_n vanishing on non-polysimple\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemma:1202\"];\n  \"theorem_1237\" [label=\"Theorem\\nExactness of C_*(BT,Γ) except in degree 0\", shape=ellipse, style=filled, fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"theorem:1237\"];\n  \"lemDiagCommix\" [label=\"Lemma 4.9\\nCommutative diagram: i_y ∘ ε_y^x = e_y ∘ i_x\", shape=ellipse, style=filled, fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"lemDiagCommix\"];\n  \"theEsssurj\" [label=\"Theorem 4.10\\nEssential surjectivity: Γ ≅ (σ ↦ e_σ H_0(BT,Γ))\", shape=ellipse, style=filled, fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"theEsssurj\"];\n  \"theeqcat\" [label=\"Theorem 4.11\\nMain equivalence: Rep_e(G) ≃ Coef_e\", shape=ellipse, style=filled, fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"theeqcat\"];\n  \"ext_meyer_resolutions_2010_definition_2_1\" [label=\"Definition 2.1\\n[MS10] Def. 2.1 — Consistent system of idempotents\", shape=box, style=\"dashed,filled\", fillcolor=\"#A3D6FF\", color=\"#4A90D9\", tooltip=\"ext:meyer_resolutions_2010:definition:2.1\"];\n  \"ext_meyer_resolutions_2010_theorem_3_1\" [label=\"Theorem 3.1\\n[MS10] Thm. 3.1 — Rep_e(G) is a Serre subcategory\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"ext:meyer_resolutions_2010:theorem:3.1\"];\n  \"ext_meyer_resolutions_2010_theorem_2_4\" [label=\"Theorem 2.4\\n[MS10] Thm. 2.4 — Resolution by coefficient system\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"ext:meyer_resolutions_2010:theorem:2.4\"];\n  \"ext_Wanga_lemma_2_2_5\" [label=\"Lemma 2.2.5\\n[Wan17] Lem. 2.2.5 — Simplicial hull properties fo\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"ext:Wanga:lemma:2.2.5\"];\n  \"ext_meyer_resolutions_2010_lemma_2_15\" [label=\"Lemma 2.15\\n[MS10] Lem. 2.15 — Admissible path existence throu\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"ext:meyer_resolutions_2010:lemma:2.15\"];\n  \"ext_Wanga_lemma_2_3_1\" [label=\"Lemma 2.3.1\\n[Wan17] Lem. 2.3.1 — Composition p_x^Σ ∘ i_y^Σ = ε\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"ext:Wanga:lemma:2.3.1\"];\n  \"ext_Wanga_lemma_2_3_2\" [label=\"Lemma 2.3.2\\n[Wan17] Lem. 2.3.2 — Consistency of idempotent sys\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"ext:Wanga:lemma:2.3.2\"];\n  \"ext_meyer_resolutions_2010_theorem_2_12\" [label=\"Theorem 2.12\\n[MS10] Thm. 2.12 — Idempotent decomposition from c\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFB3B3\", color=\"#D94A4A\", tooltip=\"ext:meyer_resolutions_2010:theorem:2.12\"];\n  \"ext_Wanga_proposition_2_4_1(b)\" [label=\"Proposition 2.4.1(b)\\n[Wan17] Prop. 2.4.1(b) — Injectivity of i_{Σ'}^Σ\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"ext:Wanga:proposition:2.4.1(b)\"];\n  \"ext_Wanga_proposition_2_4_1(a)\" [label=\"Proposition 2.4.1(a)\\n[Wan17] Prop. 2.4.1(a) — Vanishing H_n(Σ,Γ)=0 for \", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#C8B3FF\", color=\"#7A4AD9\", tooltip=\"ext:Wanga:proposition:2.4.1(a)\"];\n  \"ext_Wanga_lemma_2_4_2\" [label=\"Lemma 2.4.2\\n[Wan17] Lem. 2.4.2 — Commutative diagram i_y ∘ ε =\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#FFDAA3\", color=\"#D9944A\", tooltip=\"ext:Wanga:lemma:2.4.2\"];\n  \"ext_Wanga_corollary_2_1_11\" [label=\"Corollary 2.1.11\\n[Wan17] Cor. 2.1.11 — Full faithfulness of V ↦ Γ(V\", shape=ellipse, style=\"dashed,filled\", fillcolor=\"#B3FFB3\", color=\"#4AD94A\", tooltip=\"ext:Wanga:corollary:2.1.11\"];\n\n  \"lemhyperplan\" -> \"lemmaxi\" [color=\"#333333\", style=solid, tooltip=\"references: \\ref{lemmaxi}\"];\n  \"lemenveloppemaximal\" -> \"lemmaxi\" [color=\"#333333\", style=solid, tooltip=\"references: \\ref{lemmaxi}\"];\n  \"remark_1027\" -> \"proEpsilonCompo\" [color=\"#333333\", style=solid, tooltip=\"references: \\ref{proEpsilonCompo}\"];\n  \"lemipcompo\" -> \"ext_Wanga_lemma_2_3_1\" [color=\"#808080\", style=dashed, tooltip=\"cites_result: \\cite[Lem. 2.3.1]{Wanga}\"];\n  \"proinjisigma\" -> \"ext_Wanga_proposition_2_4_1(b)\" [color=\"#808080\", style=dashed, tooltip=\"cites_result: \\cite[Prop. 2.4.1 (b)]{Wanga}\"];\n  \"remark_1190\" -> \"ext_Wanga_proposition_2_4_1(b)\" [color=\"#808080\", style=dashed, tooltip=\"cites_result: \\cite[Prop. 2.4.1 (b)]{Wanga}\"];\n  \"lemCheminOmega\" -> \"definition_707\" [color=\"#9B59B6\", style=dashed, tooltip=\"uses_definition: uses symbol $\\tau_{0}=\\tau$ defined in definition:707\"];\n  \"definition_778\" -> \"definition_707\" [color=\"#9B59B6\", style=dashed, tooltip=\"uses_definition: uses symbol $\\tau_{0}=\\tau$ defined in definition:707\"];\n  \"lemfactorisationdebut\" -> \"definition_707\" [color=\"#9B59B6\", style=dashed, tooltip=\"uses_definition: uses symbol $\\tau_{0}=\\tau$ defined in definition:707\"];\n  \"lemrecurrencechemin\" -> \"definition_843\" [color=\"#9B59B6\", style=dashed, tooltip=\"uses_definition: uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843\"];\n  \"lemseparationsimplexe\" -> \"definition_843\" [color=\"#9B59B6\", style=dashed, tooltip=\"uses_definition: uses symbol $\\rho(\\tau,\\sigma)$ defined in definition:843\"];\n}"
+}
