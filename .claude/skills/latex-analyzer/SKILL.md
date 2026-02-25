@@ -26,10 +26,16 @@ Where `SKILL_DIR` is the directory containing this SKILL.md and `BASE` is the in
 Read the raw JSON output and enrich it:
 
 1. **Review extracted objects** — verify types are correct, fix any misidentified objects
-2. **Associate proofs** — for any proof where `proves` is null, determine which theorem/lemma it proves by reading its content and context
-3. **Add implicit dependencies** — scan object content for references like "by Theorem X.Y" or "using Definition Z" that weren't captured by the extractor
-4. **Add content_plain** — write a concise plain-text summary for each important object (theorems, key definitions, main lemmas)
-5. **Remove noise** — delete objects that are not genuine mathematical content (e.g., "Q.E.D." parsed as a section)
+2. **Name every object** — for each non-proof object, set `title` to a concise descriptive name summarizing its mathematical content. Examples:
+   - Theorem: "Freeness of U(p̄) as right U(p̄)^N-module"
+   - Lemma: "Vanishing of n-cohomology for Whittaker modules"
+   - Definition: "Admissible nilpotent elements"
+   - Corollary: "Finite generation of U(p̄)^N"
+   - Names should capture the mathematical essence, not just repeat the statement. Use standard notation (↪, ≅, ⊗, etc.) when helpful.
+3. **Associate proofs** — for any proof where `proves` is null, determine which theorem/lemma it proves by reading its content and context
+4. **Add implicit dependencies** — scan object content for references like "by Theorem X.Y" or "using Definition Z" that weren't captured by the extractor
+5. **Add content_plain** — write a concise plain-text summary for each important object (theorems, key definitions, main lemmas)
+6. **Remove noise** — delete objects that are not genuine mathematical content (e.g., "Q.E.D." parsed as a section)
 
 Write the enriched result to `${BASE}_enriched.json`.
 
