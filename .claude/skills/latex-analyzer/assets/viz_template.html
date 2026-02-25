@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint: {{TITLE}}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/@hpcc-js/wasm@2.16.1/dist/graphviz.umd.js"></script>
+<script src="https://unpkg.com/d3-graphviz@5.4.0/build/d3-graphviz.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --sidebar-w: 300px;
+  --detail-w: 380px;
+  --bg: #fafafa;
+  --border: #e0e0e0;
+  --text: #333;
+  --text-muted: #888;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; }
+
+/* Layout */
+#app { display: flex; height: 100vh; }
+#sidebar { width: var(--sidebar-w); border-right: 1px solid var(--border); display: flex; flex-direction: column; background: #fff; flex-shrink: 0; }
+#graph-container { flex: 1; position: relative; overflow: hidden; background: #fdfdfd; }
+#detail-panel { width: var(--detail-w); border-left: 1px solid var(--border); background: #fff; overflow-y: auto; flex-shrink: 0; display: none; }
+
+/* Header */
+#header { padding: 12px 16px; border-bottom: 1px solid var(--border); background: #fff; }
+#header h1 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+#header .meta { font-size: 11px; color: var(--text-muted); }
+
+/* Search */
+#search-box { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+#search-box input { width: 100%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; outline: none; }
+#search-box input:focus { border-color: #4A90D9; }
+
+/* Filter */
+#filter-bar { padding: 6px 12px; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 4px; }
+.filter-chip { padding: 2px 8px; border-radius: 10px; font-size: 10px; cursor: pointer; border: 1px solid; user-select: none; }
+.filter-chip.active { opacity: 1; }
+.filter-chip.inactive { opacity: 0.4; }
+
+/* Object list */
+#object-list { flex: 1; overflow-y: auto; padding: 4px 0; }
+.obj-group { margin-bottom: 2px; }
+.obj-group-header { padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--text-muted); cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; background: #f8f8f8; }
+.obj-group-header:hover { background: #f0f0f0; }
+.obj-group-header .count { background: #e0e0e0; border-radius: 8px; padding: 0 6px; font-size: 10px; }
+.obj-item { padding: 5px 12px 5px 20px; font-size: 12px; cursor: pointer; border-left: 3px solid transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.obj-item:hover { background: #f0f6ff; }
+.obj-item.selected { background: #e8f0fe; border-left-color: #4A90D9; }
+.obj-item .num { font-weight: 600; margin-right: 4px; }
+.obj-item .title { color: var(--text-muted); }
+
+/* Detail panel */
+#detail-panel .detail-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+#detail-panel .detail-header h2 { font-size: 14px; }
+#detail-close { cursor: pointer; padding: 4px 8px; border: none; background: none; font-size: 16px; color: var(--text-muted); }
+#detail-close:hover { color: var(--text); }
+#detail-content { padding: 16px; }
+#detail-content .field { margin-bottom: 12px; }
+#detail-content .field-label { font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+#detail-content .field-value { font-size: 13px; line-height: 1.6; }
+#detail-content .math-content { background: #f8f8f8; padding: 12px; border-radius: 4px; font-size: 13px; line-height: 1.8; overflow-x: auto; }
+#detail-content .dep-list { list-style: none; }
+#detail-content .dep-list li { padding: 3px 0; font-size: 12px; cursor: pointer; color: #4A90D9; }
+#detail-content .dep-list li:hover { text-decoration: underline; }
+
+/* Graph */
+#graph-svg { width: 100%; height: 100%; }
+#graph-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 6px; z-index: 10; }
+#graph-controls button { padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; background: #fff; font-size: 12px; cursor: pointer; }
+#graph-controls button:hover { background: #f0f0f0; }
+
+/* Legend */
+#legend { position: absolute; bottom: 10px; left: 10px; background: rgba(255,255,255,0.95); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 11px; z-index: 10; }
+#legend .legend-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+#legend .legend-swatch { width: 14px; height: 14px; border-radius: 2px; border: 1px solid; }
+
+/* Type colors */
+.type-definition { background-color: #A3D6FF; border-color: #4A90D9; }
+.type-theorem { background-color: #FFB3B3; border-color: #D94A4A; }
+.type-lemma { background-color: #FFDAA3; border-color: #D9944A; }
+.type-proposition { background-color: #C8B3FF; border-color: #7A4AD9; }
+.type-corollary { background-color: #B3FFB3; border-color: #4AD94A; }
+.type-remark { background-color: #E0E0E0; border-color: #808080; }
+.type-proof { background-color: #F0F0F0; border-color: #B0B0B0; }
+.type-example { background-color: #FFFFB3; border-color: #D9D94A; }
+.type-conjecture { background-color: #FFE0B3; border-color: #D9A64A; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  :root { --sidebar-w: 220px; --detail-w: 280px; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div id="header">
+      <h1 id="doc-title"></h1>
+      <div class="meta" id="doc-meta"></div>
+    </div>
+    <div id="search-box">
+      <input type="text" id="search-input" placeholder="Search objects...">
+    </div>
+    <div id="filter-bar"></div>
+    <div id="object-list"></div>
+  </nav>
+
+  <!-- Graph -->
+  <div id="graph-container">
+    <div id="graph-controls">
+      <button onclick="resetZoom()">Reset Zoom</button>
+      <button onclick="toggleProofs()">Toggle Proofs</button>
+    </div>
+    <div id="graph-svg"></div>
+    <div id="legend"></div>
+  </div>
+
+  <!-- Detail Panel -->
+  <div id="detail-panel">
+    <div class="detail-header">
+      <h2 id="detail-title"></h2>
+      <button id="detail-close" onclick="closeDetail()">&times;</button>
+    </div>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<script>
+// Data injected by generate_viz.py
+const DATA = /*DATA_PLACEHOLDER*/null;
+
+if (!DATA) {
+  document.getElementById('doc-title').textContent = 'No data loaded';
+} else {
+  initApp(DATA);
+}
+
+function initApp(data) {
+  const { metadata, objects, dependencies, dot_graph, sections } = data;
+
+  // Build indices
+  const objMap = {};
+  objects.forEach(o => { objMap[o.id] = o; });
+
+  const depsFrom = {};  // id -> [{to, relation}]
+  const depsTo = {};    // id -> [{from, relation}]
+  dependencies.forEach(d => {
+    if (!depsFrom[d.from]) depsFrom[d.from] = [];
+    depsFrom[d.from].push(d);
+    if (!depsTo[d.to]) depsTo[d.to] = [];
+    depsTo[d.to].push(d);
+  });
+
+  // Type counts
+  const typeCounts = {};
+  objects.forEach(o => {
+    typeCounts[o.type] = (typeCounts[o.type] || 0) + 1;
+  });
+
+  const activeFilters = new Set(Object.keys(typeCounts));
+  let showProofs = false;
+  let selectedId = null;
+
+  // Header
+  document.getElementById('doc-title').textContent = metadata.title || metadata.source_file;
+  document.getElementById('doc-meta').textContent =
+    `${objects.length} objects | ${dependencies.length} dependencies | ${metadata.source_file}`;
+
+  // Filters
+  const filterBar = document.getElementById('filter-bar');
+  const typeColors = {
+    definition: '#A3D6FF', theorem: '#FFB3B3', lemma: '#FFDAA3',
+    proposition: '#C8B3FF', corollary: '#B3FFB3', remark: '#E0E0E0',
+    proof: '#F0F0F0', example: '#FFFFB3', conjecture: '#FFE0B3',
+    axiom: '#FFB3E6', notation: '#D0D0D0', assumption: '#FFD0E0', claim: '#D0FFD0'
+  };
+
+  Object.keys(typeCounts).sort().forEach(type => {
+    const chip = document.createElement('span');
+    chip.className = 'filter-chip active';
+    chip.style.background = typeColors[type] || '#ddd';
+    chip.style.borderColor = darken(typeColors[type] || '#ddd', 30);
+    chip.textContent = `${capitalize(type)} (${typeCounts[type]})`;
+    chip.onclick = () => {
+      if (activeFilters.has(type)) {
+        activeFilters.delete(type);
+        chip.className = 'filter-chip inactive';
+      } else {
+        activeFilters.add(type);
+        chip.className = 'filter-chip active';
+      }
+      renderList();
+      renderGraph();
+    };
+    filterBar.appendChild(chip);
+  });
+
+  // Object list
+  function renderList(filter = '') {
+    const list = document.getElementById('object-list');
+    list.innerHTML = '';
+    const groups = {};
+    objects.forEach(o => {
+      if (!activeFilters.has(o.type)) return;
+      if (o.type === 'proof' && !showProofs) return;
+      if (filter) {
+        const searchStr = `${o.type} ${o.number || ''} ${o.title || ''} ${o.content_plain || ''}`.toLowerCase();
+        if (!searchStr.includes(filter.toLowerCase())) return;
+      }
+      const sec = o.section || 'Ungrouped';
+      if (!groups[sec]) groups[sec] = [];
+      groups[sec].push(o);
+    });
+
+    Object.keys(groups).forEach(sec => {
+      const group = document.createElement('div');
+      group.className = 'obj-group';
+
+      const header = document.createElement('div');
+      header.className = 'obj-group-header';
+      header.innerHTML = `<span>${sec}</span><span class="count">${groups[sec].length}</span>`;
+      let collapsed = false;
+      const items = document.createElement('div');
+
+      header.onclick = () => {
+        collapsed = !collapsed;
+        items.style.display = collapsed ? 'none' : 'block';
+      };
+
+      groups[sec].forEach(o => {
+        const item = document.createElement('div');
+        item.className = 'obj-item' + (o.id === selectedId ? ' selected' : '');
+        const typeLabel = capitalize(o.type);
+        item.innerHTML = `<span class="num">${typeLabel}${o.number ? ' ' + o.number : ''}</span>` +
+          (o.title ? `<span class="title">${o.title}</span>` : '');
+        item.onclick = () => selectObject(o.id);
+        items.appendChild(item);
+      });
+
+      group.appendChild(header);
+      group.appendChild(items);
+      list.appendChild(group);
+    });
+  }
+
+  // Detail panel
+  function selectObject(id) {
+    selectedId = id;
+    const obj = objMap[id];
+    if (!obj) return;
+
+    const panel = document.getElementById('detail-panel');
+    panel.style.display = 'block';
+
+    document.getElementById('detail-title').textContent =
+      `${capitalize(obj.type)}${obj.number ? ' ' + obj.number : ''}`;
+
+    const content = document.getElementById('detail-content');
+    let html = '';
+
+    if (obj.title) {
+      html += `<div class="field"><div class="field-label">Title</div><div class="field-value">${escapeHtml(obj.title)}</div></div>`;
+    }
+
+    html += `<div class="field"><div class="field-label">Section</div><div class="field-value">${escapeHtml(obj.section || 'N/A')}</div></div>`;
+    html += `<div class="field"><div class="field-label">Source Line</div><div class="field-value">${obj.source_line}</div></div>`;
+
+    // Content
+    const displayContent = obj.content_plain || obj.content_latex || '';
+    html += `<div class="field"><div class="field-label">Content</div><div class="math-content">${escapeHtml(displayContent)}</div></div>`;
+
+    // Dependencies (what this depends on)
+    const deps = (depsFrom[id] || []).filter(d => d.to !== id);
+    if (deps.length > 0) {
+      html += `<div class="field"><div class="field-label">Depends on</div><ul class="dep-list">`;
+      deps.forEach(d => {
+        const target = objMap[d.to];
+        if (target) {
+          const label = `${capitalize(target.type)}${target.number ? ' ' + target.number : ''} (${d.relation})`;
+          html += `<li onclick="selectObject('${d.to}')">${escapeHtml(label)}</li>`;
+        }
+      });
+      html += `</ul></div>`;
+    }
+
+    // Dependents (what depends on this)
+    const rdeps = (depsTo[id] || []).filter(d => d.from !== id);
+    if (rdeps.length > 0) {
+      html += `<div class="field"><div class="field-label">Used by</div><ul class="dep-list">`;
+      rdeps.forEach(d => {
+        const source = objMap[d.from];
+        if (source) {
+          const label = `${capitalize(source.type)}${source.number ? ' ' + source.number : ''} (${d.relation})`;
+          html += `<li onclick="selectObject('${d.from}')">${escapeHtml(label)}</li>`;
+        }
+      });
+      html += `</ul></div>`;
+    }
+
+    // Proof association
+    if (obj.proved_by && objMap[obj.proved_by]) {
+      html += `<div class="field"><div class="field-label">Proved by</div><ul class="dep-list"><li onclick="selectObject('${obj.proved_by}')">Proof (line ${objMap[obj.proved_by].source_line})</li></ul></div>`;
+    }
+    if (obj.proves && objMap[obj.proves]) {
+      const t = objMap[obj.proves];
+      html += `<div class="field"><div class="field-label">Proves</div><ul class="dep-list"><li onclick="selectObject('${obj.proves}')">${capitalize(t.type)}${t.number ? ' ' + t.number : ''}</li></ul></div>`;
+    }
+
+    content.innerHTML = html;
+
+    // Render KaTeX in math-content
+    content.querySelectorAll('.math-content').forEach(el => {
+      renderMathInElement(el, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true},
+        ],
+        throwOnError: false,
+      });
+    });
+
+    // Highlight in graph
+    highlightNode(id);
+    renderList();
+  }
+
+  window.selectObject = selectObject;
+
+  function closeDetail() {
+    document.getElementById('detail-panel').style.display = 'none';
+    selectedId = null;
+    renderList();
+    clearHighlight();
+  }
+  window.closeDetail = closeDetail;
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    renderList(e.target.value);
+  });
+
+  // Graph rendering
+  let graphvizInstance = null;
+
+  function renderGraph() {
+    const container = document.getElementById('graph-svg');
+
+    // Build filtered DOT
+    const filteredDot = buildFilteredDot(objects, dependencies, activeFilters, showProofs);
+
+    try {
+      if (!graphvizInstance) {
+        graphvizInstance = d3.select('#graph-svg')
+          .graphviz()
+          .fit(true)
+          .zoom(true)
+          .transition(() => d3.transition().duration(300));
+      }
+      graphvizInstance
+        .renderDot(filteredDot)
+        .on('end', () => {
+          // Add click handlers to nodes
+          d3.selectAll('.node').on('click', function(event) {
+            const title = d3.select(this).select('title').text();
+            // title contains the node id (with _ instead of : and .)
+            const id = title.replace(/_/g, function(match, offset, str) {
+              // Reconstruct original id
+              return offset === str.indexOf('_') ? ':' : '.';
+            });
+            // Try to find matching object
+            const obj = findObjectByNodeId(title);
+            if (obj) selectObject(obj.id);
+          });
+        });
+    } catch (e) {
+      container.innerHTML = `<div style="padding:20px;color:#888;">Graph rendering error: ${e.message}</div>`;
+    }
+  }
+
+  function findObjectByNodeId(nodeId) {
+    // nodeId is like "theorem_1_2" and we need "theorem:1.2"
+    for (const obj of objects) {
+      const expected = obj.id.replace(/:/g, '_').replace(/\./g, '_');
+      if (expected === nodeId) return obj;
+    }
+    return null;
+  }
+
+  function buildFilteredDot(objects, deps, filters, includeProofs) {
+    const filtered = objects.filter(o => {
+      if (!filters.has(o.type)) return false;
+      if (o.type === 'proof' && !includeProofs) return false;
+      return true;
+    });
+    const filteredIds = new Set(filtered.map(o => o.id));
+
+    let dot = 'digraph G {\n  rankdir=BT;\n  node [fontname="Helvetica", fontsize=10];\n  edge [fontsize=8];\n\n';
+
+    const tc = {
+      definition: {fill:'#A3D6FF',stroke:'#4A90D9',shape:'box'},
+      theorem: {fill:'#FFB3B3',stroke:'#D94A4A',shape:'ellipse'},
+      lemma: {fill:'#FFDAA3',stroke:'#D9944A',shape:'ellipse'},
+      proposition: {fill:'#C8B3FF',stroke:'#7A4AD9',shape:'ellipse'},
+      corollary: {fill:'#B3FFB3',stroke:'#4AD94A',shape:'ellipse'},
+      remark: {fill:'#E0E0E0',stroke:'#808080',shape:'box'},
+      proof: {fill:'#F0F0F0',stroke:'#B0B0B0',shape:'box'},
+      example: {fill:'#FFFFB3',stroke:'#D9D94A',shape:'box'},
+      conjecture: {fill:'#FFE0B3',stroke:'#D9A64A',shape:'diamond'},
+    };
+
+    filtered.forEach(o => {
+      const c = tc[o.type] || tc.remark;
+      const nodeId = o.id.replace(/:/g,'_').replace(/\./g,'_');
+      let label = capitalize(o.type);
+      if (o.number) label += ' ' + o.number;
+      dot += `  "${nodeId}" [label="${label}", shape=${c.shape}, style=filled, fillcolor="${c.fill}", color="${c.stroke}", tooltip="${o.id}"];\n`;
+    });
+
+    dot += '\n';
+
+    const rs = {
+      references: {color:'#333333',style:'solid'},
+      uses: {color:'#4A90D9',style:'solid'},
+      proves: {color:'#4AD94A',style:'dashed'},
+      implicit: {color:'#D9944A',style:'dotted'},
+      cites: {color:'#808080',style:'dotted'},
+    };
+
+    deps.forEach(d => {
+      if (!filteredIds.has(d.from) || !filteredIds.has(d.to)) return;
+      const s = rs[d.relation] || rs.references;
+      const from = d.from.replace(/:/g,'_').replace(/\./g,'_');
+      const to = d.to.replace(/:/g,'_').replace(/\./g,'_');
+      dot += `  "${from}" -> "${to}" [color="${s.color}", style=${s.style}];\n`;
+    });
+
+    dot += '}';
+    return dot;
+  }
+
+  function highlightNode(id) {
+    // Highlight the selected node and its immediate connections
+    const nodeId = id.replace(/:/g,'_').replace(/\./g,'_');
+    d3.selectAll('.node').each(function() {
+      const title = d3.select(this).select('title').text();
+      if (title === nodeId) {
+        d3.select(this).select('ellipse,polygon,path').attr('stroke-width', 3);
+      } else {
+        d3.select(this).style('opacity', 0.4);
+      }
+    });
+
+    // Connected nodes
+    const connected = new Set();
+    (depsFrom[id] || []).forEach(d => connected.add(d.to));
+    (depsTo[id] || []).forEach(d => connected.add(d.from));
+
+    d3.selectAll('.node').each(function() {
+      const title = d3.select(this).select('title').text();
+      const obj = findObjectByNodeId(title);
+      if (obj && connected.has(obj.id)) {
+        d3.select(this).style('opacity', 1);
+      }
+    });
+  }
+
+  function clearHighlight() {
+    d3.selectAll('.node').style('opacity', 1);
+    d3.selectAll('.node ellipse, .node polygon, .node path').attr('stroke-width', 1);
+  }
+
+  window.resetZoom = function() {
+    if (graphvizInstance) graphvizInstance.resetZoom(d3.transition().duration(300));
+  };
+
+  window.toggleProofs = function() {
+    showProofs = !showProofs;
+    renderList();
+    renderGraph();
+  };
+
+  // Legend
+  const legend = document.getElementById('legend');
+  const legendTypes = Object.keys(typeCounts).filter(t => t !== 'proof').sort();
+  legendTypes.forEach(type => {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    const color = typeColors[type] || '#ddd';
+    item.innerHTML = `<div class="legend-swatch" style="background:${color};border-color:${darken(color,30)}"></div>${capitalize(type)}`;
+    legend.appendChild(item);
+  });
+
+  // Initial render
+  renderList();
+  renderGraph();
+}
+
+// Utilities
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function darken(hex, pct) {
+  const num = parseInt(hex.replace('#',''), 16);
+  const r = Math.max(0, (num >> 16) - pct);
+  const g = Math.max(0, ((num >> 8) & 0xff) - pct);
+  const b = Math.max(0, (num & 0xff) - pct);
+  return '#' + (r << 16 | g << 8 | b).toString(16).padStart(6, '0');
+}
+</script>
+</body>
+</html>
